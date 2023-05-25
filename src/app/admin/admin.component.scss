@@ -1,0 +1,75 @@
+@import "../shared/styles/variables";
+
+.container-fluid {
+    margin-top: 160px;
+    margin-bottom: 120px;
+}
+.nav-link {
+    outline: none;
+    color: #5a5a5a;
+    border-top: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+    border-radius: 0;
+    transition: border-color 0.3s;
+    padding: 1.2rem 2.5rem;
+    font-size: 18px;
+}
+.nav-link:hover {
+    color: #252525;
+}
+.nav-link.active {
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+    outline: none;
+    border-top: 5px solid $primary;
+    border-right-color: transparent;
+    border-radius: 0;
+}
+
+.entrance {
+    width: max-content;
+    margin: 30px auto 0;
+    .btn-block {
+        display: block;
+        width: 100%;
+    }
+    .btn-fix-2 {
+        max-width: 257px;
+        width: 100%;
+    }
+    .btn {
+        display: inline-block;
+        vertical-align: bottom;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        text-decoration: none;
+        -webkit-transition: .35s;
+        transition: .35s;
+        text-transform: uppercase;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: bold;
+        padding: 16px 22px;
+        border-radius: 10px;
+        color: #252525;
+    }
+    .btn-primary {
+        border: 3px solid #a0d0fb;
+        background: $primary;
+    }
+    .btn-primary:hover {
+        background: #fff;
+    }
+}
+
+
+
+
+:focus,
+:hover,
+:active,
+:visited {
+    outline: none;
+}

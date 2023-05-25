@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'app/shared/styles/variables';
+
+@font-face {
+    font-family: 'RotondaC';
+    src: url('../src/app/shared/styles/fonts/rotondac.otf') format('otf'),
+        url('../src/app/shared/styles/fonts/rotondac.otf') format('otf');
+    /* Додайте інші формати шрифту, якщо необхідно */
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'RotondaC', sans-serif;
+}
+body, .text {
+    font-size: 18px;
+    line-height: 1.5em;
+}
+
+body {
+    font-family: 'RotondaC';
+    color: #5A5A5A;
+}
+body {
+    height: 100%;
+    // overflow: hidden;
+    font-family: 'RotondaC', sans-serif;
+    font-weight: normal;
+}
+body::-webkit-scrollbar {
+    background-color: rgb(255, 255, 255);
+    width: 5px;
+    // scroll-behavior: auto;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: $primary;
+}

@@ -1,0 +1,247 @@
+@import "../../shared/styles/variables";
+
+footer {
+    border-top: 4px solid #b5d8f7;
+    margin-top: auto;
+    .footer-inner {
+        max-width: 1920px;
+        margin: 0 auto;
+        padding: 0;
+        .footer-top {
+            margin: 0 35px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 20px 0;
+            .logo {
+                max-width: 136px;
+                img {
+                    display: block;
+                    width: 100%;
+                }
+            }
+            .menu-list {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                li+li {
+                    margin-left: 55px;
+                }
+                a {
+                    font-size: 16px;
+                    line-height: 1em;
+                    color: #252525;
+                    -webkit-transition: 0.35s;
+                    -o-transition: 0.35s;
+                    transition: 0.35s;
+                }
+                a:hover {
+                    color: $primary;
+                }
+            }
+            .footer-info {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                max-width: 43%;
+                width: 100%;
+                line-height: 1.25em;
+                b {
+                    font-weight: 400;
+                }
+                .s-delivery-address {
+                    font-size: 14px;
+                    color: #5a5a5a;
+                    text-align: center;
+                }
+                .order-phone {
+                    @extend .s-delivery-address;
+                    a {
+                        display: block;
+                        b:hover {
+                            color: $primary;
+                        }
+                    }
+                }
+                .work-time {
+                    @extend .s-delivery-address;
+
+                }
+            }
+            .social {
+                display: none;
+            }
+        }
+        .footer-bottom {
+            margin: 0 35px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-bottom: 20px;
+            .copyright {
+                font-size: 14px;
+                color: #5a5a5a;
+                white-space: nowrap;
+                p {
+                    display: inline-block;
+                    margin-right: 40px;
+                }
+            }
+            .pay-cards {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                .pay-card-item {
+                    position: relative;
+                    width: 69px;
+                    height: 39px;
+                    border: 1px solid #dcdcdc;
+                    border-radius: 5px;
+                    display: inline-block;
+                    img {
+                        max-width: 45px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        -webkit-transform: translate(-50%,-50%);
+                        -ms-transform: translate(-50%,-50%);
+                        transform: translate(-50%,-50%);
+                    }
+                }
+                .pay-card-item+.pay-card-item {
+                    margin-left: 5px;
+                }
+            }
+            .social {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                span {
+                    margin-right: 20px;
+                    font-size: 14px;
+                    color: #252525;
+                }
+                ul {
+                    display: flex;
+                    li+li {
+                        margin-left: 5px;
+                    }
+                    .icon-btn {
+                        display: block;
+                        width: 49px;
+                        height: 49px;
+                        background: #b5d8f7;
+                        border: 2px solid #b5d8f7;
+                        border-radius: 10px;
+                        position: relative;
+                        -webkit-transition: 0.35s;
+                        -o-transition: 0.35s;
+                        transition: 0.35s;
+                        img {
+                            width: 18px;
+                            height: 18px;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            -webkit-transform: translate(-50%,-50%);
+                            -ms-transform: translate(-50%,-50%);
+                            transform: translate(-50%,-50%);
+                        }
+                    }
+                    .icon-btn:hover {
+                        background: transparent;
+                    }
+                }                
+            }
+            .develope {
+                a {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-pack: justify;
+                    -ms-flex-pack: justify;
+                    justify-content: space-between;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    -webkit-transition: 0.35s;
+                    -o-transition: 0.35s;
+                    transition: 0.35s;
+                }
+                a:hover {
+                    color: #0a58ca;
+                }
+                a.footer-dev-logo {
+                    position: relative;
+                    span {
+                        margin-right: 15px;
+                        font-size: 14px;
+                        font-weight: 400;
+                        -webkit-transition: 0.35s;
+                        -o-transition: 0.35s;
+                        transition: 0.35s;
+                    }
+                }
+                a.footer-dev-logo::before {
+                    background-image: url('https://monosushi.com.ua/wp-content/themes/monosushi/img/redstone-icon-black.svg');
+                    background-color: #ffffff;
+                    background-repeat: no-repeat;
+                    width: 75px;
+                    background-position: right center;
+                    background-size: 100%;
+                    content: '';
+                    right: 0px;
+                    top: 0px;
+                    position: absolute;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+b, strong {
+    font-weight: bold;
+    color: #252525;
+}
+p {
+    margin: 0;
+}
+

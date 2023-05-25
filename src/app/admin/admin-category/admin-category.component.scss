@@ -1,0 +1,153 @@
+@import '../../shared/styles/variables';
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.btn-fix-2 {
+    max-width: 257px;
+    width: 100%;
+}
+.btn {
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-transition: .35s;
+    transition: .35s;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 18px 22px;
+    border-radius: 10px;
+    color: #252525;
+}
+.btn-primary {
+    border: 3px solid #a0d0fb;
+    background: #fff;
+}
+.btn-primary:hover {
+    background: $primary;
+}
+
+:focus, :hover, :active, :visited {
+    outline: none;
+    box-shadow: none;
+}
+
+.form {
+    margin: 40px 0 80px;
+    .box-button-1 {
+        display: flex;
+        .input+.input {
+            margin-left: 15px;
+        }
+    }
+    .input {
+        font-size: 16px;
+        height: 66px;
+        width: 100%;
+        margin-bottom: 20px;
+        border: 1px solid #dcdcdc;
+        border-radius: 10px;
+        color: #252525;
+        line-height: 66px;
+        padding: 0 30px 0 33px;
+        -webkit-transition: 0.35s;
+        transition: 0.35s;
+        text-overflow: ellipsis;
+    }
+    .input:focus {
+        border-color: $primary
+    }
+    textarea {
+        @extend .input;
+        height: 180px; 
+        resize: none; 
+    }
+    input[type="file"] {
+        line-height: inherit;
+        padding: 16px 30px;
+    }
+
+    .cabinet_address-buttons .btn {
+        background-color: $primary;
+    }
+    .cabinet_address-buttons .btn:hover {
+        background-color: #fff;
+    }
+    .red {
+        // color: red;
+        border-color: red;
+    }
+    .delete-image {
+        display: flex;
+        flex-direction: column;
+        button {
+            width: max-content;
+            border: 3px solid #ff6c6c;
+            background: #fff;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #ff6c6c;
+        }
+    }
+}
+
+
+
+.table>:not(:first-child) {
+    border-top: 3px solid $primary;
+}
+.table>:not(caption)>*>* {
+    padding: 1.3rem 0.5rem;
+}
+
+th, td {
+    color: #5a5a5a;
+    font-weight: normal;
+    vertical-align: middle;
+}
+.box-button-2 {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    .edit, .delete {
+        position: relative;
+        color: #b5d8f7;
+        cursor: pointer;
+        font-weight: 700;
+        -webkit-transition: 0.35s;
+        transition: 0.35s;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        text-align: left;
+        width: max-content;
+    }
+    .delete {
+        margin-top: 5px;
+    }
+    .edit::before, .delete::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: auto;
+        right: 0;
+        height: 2px;
+        width: 0;
+        background: $primary;
+        -webkit-transition: all 0.35s ease-out;
+        transition: all 0.35s ease-out;
+    }
+    .edit:hover::before, .delete:hover::before {
+        width: 100%;
+        right: auto;
+        left: 0;
+    }
+}

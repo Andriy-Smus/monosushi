@@ -1,0 +1,124 @@
+<div class="row ps-4">
+    <div class="col-12">
+        <button _ngcontent-ahf-c68="" data-rel="4" class="btn btn-fix-2 btn-primary btn-block" (click)="openAddCategory()">Додати акцію</button>
+        <div class="col-8" *ngIf="addStatus">
+            <form [formGroup]="categoryForm" class="form" id="user-edit-password" (ngSubmit)="addCategory()">
+                <div class="box-button-1">
+                    <input type="text" formControlName="name" name="name" placeholder="*Назва" class="input" required="" (blur)="blurName()" [ngClass]="{'red': isRedName}">
+                    <input type="text" formControlName="path" name="path" placeholder="*Шлях" class="input" required="" (blur)="blurPath()" [ngClass]="{'red': isRedPath}">
+                </div>
+                <ng-container *ngIf="!isUploaded">
+                    <input type="file" class="input" (change)="upload($event)">
+                    <div class="progress mb-3">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" 
+                        [style.width.%]="uploadPercent" 
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="isUploaded">
+                    <div class="delete-image">
+                        <img [src]="valueByControl('imagePath')" alt="" class="mb-3">
+                        <button type="button" class="btn mb-3" (click)="deleteImage()">Видалити файл</button>
+                    </div>
+                </ng-container>
+                
+                
+                <div class="cabinet_address-buttons">
+                    <button class="btn btn-fix-2 btn-primary btn-block" type="submit" 
+                    [disabled]="categoryForm.invalid"> {{ editStatus ? 'Зберегти зміни' : 'Зберегти' }} </button>
+                </div>
+            </form>
+        </div>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Шлях</th>
+                    <th scope="col">Картинка</th>
+                    <th scope="col">Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of adminCategories">
+                    <td> {{ category.id }} </td>
+                    <td> {{ category.name }} </td>
+                    <td style="color: #252525">
+                        {{ category.path }} 
+                    </td>
+                    <td>
+                        <img [src]="category.imagePath" alt="" height="50px">
+                    </td>
+                    <td>
+                        <div class="box-button-2">
+                            <button (click)="editCategory(category)" type="button" class="edit">Редагувати</button>
+                            <button [disabled]="editStatus" (click)="deleteCategory(category)" type="button" class="delete">Видалити</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- <div class="row">
+    <div class="col-4">
+        <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input formControlName="name" name="name" type="text" class="form-control" id="name">
+              </div>
+            <div class="mb-3">
+                <label for="path" class="form-label">Path</label>
+                <input formControlName="path" name="path" type="text" class="form-control" id="path">
+                <div class="invalid-feedback">Path is required</div>
+              </div>
+            <ng-container  *ngIf="!isUploaded">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Default file input example</label>
+                    <input class="form-control" type="file" id="formFile" (change)="upload($event)">
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar progress-bar-striped" role="progressbar" 
+                    [style.width.%]="uploadPercent" 
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="isUploaded">
+                <img [src]="valueByControl('imagePath')" alt="">
+                <button type="button" class="btn btn-danger" (click)="deleteImage()">delete</button>
+            </ng-container>
+            <button [disabled]="categoryForm.invalid"  type="submit" class="btn btn-success w-100">
+                {{ editStatus ? 'Save' : 'Add' }}
+            </button>
+        </form>
+    </div>
+    <div class="col-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Path</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of adminCategories">
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.path }}</td>
+                    <td>
+                        <img [src]="category.imagePath" alt="" height="50px">
+                    </td>
+                    <td>
+                        <button (click)="editCategory(category)" type="button" class="btn btn-secondary me-2">Edit</button>
+                        <button [disabled]="editStatus" (click)="deleteCategory(category)" type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> -->

@@ -1,0 +1,91 @@
+<div class="row ps-4">
+    <div class="col-4">
+        <!-- <form>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea [(ngModel)]="description" name="description" id="description" class="form-control" placeholder="Description here.."></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="imagePath" class="form-label">Image</label>
+              <input [(ngModel)]="imagePath" name="imagePath" type="text" class="form-control" id="imagePath" readonly>
+            </div>
+            <button 
+                *ngIf="!editStatus" 
+                [disabled]="!description" 
+                type="button" class="btn btn-success w-100" 
+                (click)="addDiscount()"
+            >Add</button>
+            <button 
+                *ngIf="editStatus" 
+                [disabled]="!description" 
+                type="button" 
+                class="btn btn-info w-100" 
+                (click)="saveDiscount()"
+            >Save</button>
+          </form> -->
+    </div>
+    <div class="col-12">
+        <button _ngcontent-ahf-c68="" data-rel="4" class="btn btn-fix-2 btn-primary btn-block" (click)="openAddDiscount()">Додати акцію</button>
+        <div class="col-8" *ngIf="addStatus">
+            <form [formGroup]="discountForm" class="form" id="user-edit-password" (ngSubmit)="addDiscount()">
+                <div class="box-button-1">
+                    <input type="text" formControlName="name" name="name" placeholder="*Назва" class="input" required="" (blur)="blurName()" [ngClass]="{'red': isRedName}">
+                    <input type="text" formControlName="title" name="title" placeholder="*Заголовок" class="input" required="" (blur)="blurTitle()" [ngClass]="{'red': isRedTitle}">
+                </div>        
+                <textarea formControlName="description" name="description" id="" placeholder="*Опис" required="" (blur)="blurDescription()" [ngClass]="{'red': isRedDescription}"></textarea>
+                <ng-container *ngIf="!isUploaded">
+                    <input type="file" class="input" (change)="upload($event)">
+                    <div class="progress mb-3">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" 
+                        [style.width.%]="uploadPercent" 
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="isUploaded">
+                    <div class="delete-image">
+                        <img [src]="valueByControl('imagePath')" alt="" class="mb-3">
+                        <button type="button" class="btn mb-3" (click)="deleteImage()">Видалити файл</button>
+                    </div>
+                </ng-container>
+                
+                
+                <div class="cabinet_address-buttons">
+                    <button class="btn btn-fix-2 btn-primary btn-block" type="submit" 
+                    [disabled]="discountForm.invalid"> {{ editStatus ? 'Зберегти зміни' : 'Зберегти' }} </button>
+                </div>
+            </form>
+        </div>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Заговолок</th>
+                    <th scope="col">Опис</th>
+                    <th scope="col">Картинка</th>
+                    <th scope="col">Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let discount of adminDiscounts">
+                    <td> {{ discount.data | date: 'MM.y' }} </td>
+                    <td> {{ discount.name }} </td>
+                    <td> {{ discount.title }} </td>
+                    <td style="color: #252525">
+                        {{ discount.description | slice:0:60 }} 
+                        <span *ngIf="discount.description.length > 60">...</span> 
+                    </td>
+                    <td>
+                        <img [src]="discount.imagePath" alt="" height="50px">
+                    </td>
+                    <td>
+                        <div class="box-button-2">
+                            <button (click)="editDiscount(discount)" type="button" class="edit">Редагувати</button>
+                            <button [disabled]="editStatus" (click)="deleteDiscount(discount)" type="button" class="delete">Видалити</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

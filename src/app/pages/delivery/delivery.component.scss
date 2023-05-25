@@ -1,0 +1,205 @@
+@import '../../shared/styles/variables';
+
+.box {
+    margin: 140px auto 50px;
+    width: max-content;
+    .line {
+        width: 100%;
+        border: 3px solid $primary;
+        border-radius: 20px;
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #000000;
+        width: max-content;
+        margin-top: 10px;
+    }
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    .delivery-info {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        .delivery-info-img {
+            margin-right: 40px;
+            max-width: 276px;
+            margin-right: 10px;
+            img {
+                width: 100%;
+            }
+        }
+        .delivery-info-text {
+            max-width: 270px;
+            .title {
+                margin-bottom: 10px;
+                letter-spacing: .07em;
+            }
+        }
+        .text-center {
+            text-align: center;
+            
+        }
+        .text-sm {
+            font-size: 14px;
+            line-height: 1.6em;
+            span {
+                font-weight: bold;
+                font-size: inherit;
+                line-height: inherit;
+            }
+        }
+    }
+    .delivery-info.green .text-sm span {
+            color: #27ae60;
+    }
+    .delivery-info.green .title {
+        color: #27ae60;
+        .text-sm span {
+            color: #27ae60;
+        }
+    }
+    .delivery-info.yellow {
+        position: relative;
+        .text-sm span {
+            color: #f2c94c;
+        }
+    }
+    .delivery-info.yellow .title {
+        color: #f2c94c;
+    }
+    .delivery-info.red .text-sm span {
+        color: #FF0000;
+    }
+    .delivery-info.red .title {
+        color: #FF0000;
+    }
+
+    .delivery-map-block {
+        position: relative;
+        margin: 80px 0 60px;
+        .map-block {
+            height: 625px;
+            max-height: calc(56.3vw - 30px);
+            margin-bottom: 0;
+            iframe {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .spacer-lg {
+        height: 90px;
+    }
+    h2, .h2 {
+        font-size: 42px;
+        line-height: 1.2em;
+    }
+    .spacer-sm {
+        height: 40px;
+    }
+    .pai-info {
+        justify-content: center;
+        // position: relative;
+        .pay-info-item {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            max-width: 427px;
+            .pay-info-img {
+                max-width: 63px;
+                width: 100%;
+                height: 60px;
+                border-radius: 10px;
+                background: $primary;
+                position: relative;
+                margin-right: 20px;
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    -webkit-transform: translate(-50%,-50%);
+                    transform: translate(-50%,-50%);
+                }
+            }
+            .pay-info-text .title {
+                line-height: 1.1em;
+                margin: 15px 0;
+            }
+            .text-sm {
+                font-size: 16px;
+                line-height: 1.6em;
+                p {
+                    margin: 0;
+                }
+            }
+        }       
+    }
+    .row.pai-info div[class^="col"]+div[class^="col"]::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: calc(-9% + 20px);
+        width: 1px;
+        height: 100%;
+        background: #dcdcdc;
+    }
+}
+.title {
+    color: #252525;
+    font-weight: bold;
+}
+
+h4, .h4 {
+    font-size: 26px;
+    line-height: 1.2em;
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    color: #252525;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 100%;
+        max-width: 1750px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+
+

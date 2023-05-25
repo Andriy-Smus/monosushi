@@ -1,0 +1,20 @@
+{
+  "discounts": [
+    {
+      "name": "Рол тижня",
+      "title": "50% знижки на \"Рол тижня\"",
+      "description": "Щотижня діє знижка 50% на один з ролів у нашому меню.\n“Рол тижня” ви можете знайти на головній сторінці нашого сайту.\nЗнижка діє при мінімальній сумі замовлення 300 грн.\nЦя акція не поєднується з іншими акціями.",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-2966d.appspot.com/o/images%2Fimgonline-com-ua-compressed-ryna9n84oqh1-scaled-697x379.jpg?alt=media&token=d1e53090-e89c-42c3-ae60-e882649fc997",
+      "id": 4,
+      "data": "2023-05-24T17:14:10.695Z"
+    }
+  ],
+  "categories": [
+    {
+      "name": "роли",
+      "path": "rolls",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-2966d.appspot.com/o/images%2Fnav-img-sets.svg?alt=media&token=fe9c8254-ee15-4662-8f25-b5c909ea5ae1",
+      "id": 1
+    }
+  ]
+}
