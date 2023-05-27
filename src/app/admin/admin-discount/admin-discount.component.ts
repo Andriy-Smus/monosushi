@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IDiscountResponse } from 'src/app/shared/interfaces/discount/discount.interface';
 import { DiscountService } from 'src/app/shared/services/discount/discount.service';
-import { Storage, getDownloadURL, percentage, uploadBytesResumable, ref, deleteObject } from '@angular/fire/storage';
+import { ImageService } from 'src/app/shared/services/image/image.service';
 // import { ref } from 'firebase/storage';
 
 @Component({
@@ -13,10 +13,9 @@ import { Storage, getDownloadURL, percentage, uploadBytesResumable, ref, deleteO
 export class AdminDiscountComponent implements OnInit {
 
   public adminDiscounts!: IDiscountResponse[];
-  public imagePath = 'https://la.ua/wp-content/uploads/2021/08/6-1.jpg';
   public editStatus = false;
   public addStatus = false;
-  public editID!: number;
+  private editID!: number;
   public isRedName = false;
   public isRedTitle = false;
   public isRedDescription = false;
@@ -28,7 +27,7 @@ export class AdminDiscountComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private discountService: DiscountService,
-    private storage: Storage
+    private imageService: ImageService
   ) { }
 
   ngOnInit(): void {
@@ -91,6 +90,7 @@ export class AdminDiscountComponent implements OnInit {
     this.discountForm.reset();
     this.isUploaded = false;
     this.uploadPercent = 0;
+    this.addStatus = false;
   }
 
   editDiscount(discount: IDiscountResponse): void {
@@ -104,6 +104,7 @@ export class AdminDiscountComponent implements OnInit {
     this.editID = discount.id;
     this.isUploaded = true;
     this.addStatus = true;
+    this.addStatus = true;
   }
 
   deleteDiscount(discount: IDiscountResponse): void {
@@ -114,7 +115,7 @@ export class AdminDiscountComponent implements OnInit {
 
   upload(event: any): void {
     const file = event.target.files[0];
-    this.uploadFile('images', file.name, file)
+    this.imageService.uploadFile('images', file.name, file)
       .then(data => {
         this.discountForm.patchValue({
           imagePath: data
@@ -126,37 +127,16 @@ export class AdminDiscountComponent implements OnInit {
       })
   }
 
-  async uploadFile(folder: string, name: string, file: File | null): Promise<string> {
-    const path = `${folder}/${name}`;
-    let url = '';
-    if(file) {
-      try {
-        const storageRef = ref(this.storage, path);
-        const task = uploadBytesResumable(storageRef, file);
-        percentage(task).subscribe(data => {
-          this.uploadPercent = data.progress
-        });
-        await task;
-        url = await getDownloadURL(storageRef);
-      } catch (e: any) {
-        console.error(e);
-      }
-    } else {
-      console.log('wrong format')
-    }
-    return Promise.resolve(url)
-  }
-
   deleteImage(): void {
-    const task = ref(this.storage, this.valueByControl('imagePath'));
-    deleteObject(task).then(() => {
-      console.log('file deleted');
-      this.isUploaded = false;
-      this.uploadPercent = 0;
-      this.discountForm.patchValue({
-        imagePath: null
+    this.imageService.deleteUploadFile(this.valueByControl('imagePath'))
+      .then(() => {
+        this.isUploaded = false;
+        this.uploadPercent = 0;
+        this.discountForm.patchValue({ imagePath: null });
       })
-    })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   valueByControl(control: string): string {

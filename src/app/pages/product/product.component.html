@@ -1,4 +1,52 @@
-<div class="container">
+<div class="container" style="margin: 140px auto 50px; width: max-content">
     <div class="line"></div>
     <h1>Продукти</h1>
+</div>
+<div class="container my-5">
+    <div class="categories-menu">
+        <ul class="categories-list">
+            <li class="categories-list-item active"><a class="category_ajax" data-id="20,21,37,38,15,52">Всі</a></li>
+            <li class="categories-list-item"><a class="category_ajax" data-id="20">Філадельфія</a></li>
+            <li class="categories-list-item"><a class="category_ajax" data-id="21">Каліфорнія</a></li>
+            <li class="categories-list-item"><a class="category_ajax" data-id="37">Запечені</a></li>
+            <li class="categories-list-item"><a class="category_ajax" data-id="38">Фірмові</a></li>
+            <li class="categories-list-item"><a class="category_ajax" data-id="15">Макі</a></li>
+            <li class="categories-list-item"><a class="category_ajax" data-id="52">Преміум</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container mb-5" style="max-width: 1750px">
+    <div class="row">
+        <div class="col-sm-6 col-lg-4 col-xl-3" *ngFor="let product of userProducts">
+            <div class="product js-product border-1" data-price="267">
+                <div class="product_image-wrap">
+                    <a class="product_image" [routerLink]="[ '/product-info' ]">
+                        <img class="img img-default imgLoaded"
+                            [src]="product.imagePath" alt="" oncontextmenu="return false">
+                    </a>
+                </div>
+                <div class="product_title-wrap">
+                    <div class="product_title title h5 m-auto">
+                        <a [routerLink]="[ '/product-info' ]" itemprop="name"> {{ product.name }} </a>
+                    </div>
+                </div>
+                <div class="product_desc">
+                    <p> {{ product.ingredients }} </p>
+                    <div class="product_size"><span class="size"> {{ product.weight }} </span> г</div>
+                </div>
+                <div class="product_controls">
+                    <div class="product_price-wrap">
+                        <div class="product_price" itemprop="price"><b class="price"> {{ product.price }} </b> грн</div>
+                        <!-- <div class="product_price-old hidden"><b class="price-old">267</b> грн</div> -->
+                    </div>
+                    <div class="thumb-input-number">
+                        <button type="button" class="decrement">-</button>
+                        <input value="1" readonly="" class="product-qty" tabindex="-1" max="999">
+                        <button type="button" class="increment">+</button>
+                    </div>
+                    <button class="btn btn-small btn-primary order-btn add-to-cart-btn" data-id="600">Замовити</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,39 @@
+@import '../../shared/styles/variables';
+
+.container {
+    margin: 140px auto 40px;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    li {
+        position: relative;
+        font-size: 18px;
+        line-height: 1.47em;
+        padding-left: 24px;
+    }
+    li::before {
+        width: 11px;
+        height: 11px;
+        position: absolute;
+        left: 0;
+        top: 9px;
+        border-radius: 100%;
+        background: #b5d8f7;
+        content: "";
+    }
+    li::after {
+        width: 9px;
+        height: 9px;
+        position: absolute;
+        left: 1px;
+        top: 10px;
+        border-radius: 100%;
+        border: 2px solid #fff;
+        background: transparent;
+        content: "";
+    }
+}
+
+ul, ol {
+    list-style: none;
+}

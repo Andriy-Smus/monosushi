@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'discount', component: DiscountComponent },
   { path: 'discount/:id', component: DiscountInfoComponent },
   { path: 'product/:category', component: ProductComponent },
+  { path: 'product-info', component: ProductInfoComponent },
   { path: 'delivery', component: DeliveryComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'about', component: AboutComponent },

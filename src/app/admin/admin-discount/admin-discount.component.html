@@ -1,29 +1,4 @@
 <div class="row ps-4">
-    <div class="col-4">
-        <!-- <form>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea [(ngModel)]="description" name="description" id="description" class="form-control" placeholder="Description here.."></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="imagePath" class="form-label">Image</label>
-              <input [(ngModel)]="imagePath" name="imagePath" type="text" class="form-control" id="imagePath" readonly>
-            </div>
-            <button 
-                *ngIf="!editStatus" 
-                [disabled]="!description" 
-                type="button" class="btn btn-success w-100" 
-                (click)="addDiscount()"
-            >Add</button>
-            <button 
-                *ngIf="editStatus" 
-                [disabled]="!description" 
-                type="button" 
-                class="btn btn-info w-100" 
-                (click)="saveDiscount()"
-            >Save</button>
-          </form> -->
-    </div>
     <div class="col-12">
         <button _ngcontent-ahf-c68="" data-rel="4" class="btn btn-fix-2 btn-primary btn-block" (click)="openAddDiscount()">Додати акцію</button>
         <div class="col-8" *ngIf="addStatus">
@@ -43,7 +18,7 @@
                 </ng-container>
                 <ng-container *ngIf="isUploaded">
                     <div class="delete-image">
-                        <img [src]="valueByControl('imagePath')" alt="" class="mb-3">
+                        <img [src]="valueByControl('imagePath')" alt="" class="mb-3" style="width: 100px">
                         <button type="button" class="btn mb-3" (click)="deleteImage()">Видалити файл</button>
                     </div>
                 </ng-container>

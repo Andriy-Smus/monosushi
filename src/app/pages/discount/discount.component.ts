@@ -24,5 +24,6 @@ export class DiscountComponent implements OnInit {
       this.userDiscounts = data;
     })
   }
+  
 
 }

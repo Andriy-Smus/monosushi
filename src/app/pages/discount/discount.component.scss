@@ -2,7 +2,11 @@
 
 .container {
     margin: 140px auto 40px;
-        width: max-content;
+    width: max-content;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
     .line {
         width: 100%;
         border: 3px solid $primary;
@@ -15,4 +19,116 @@
         width: max-content;
         margin-top: 10px;
     }
+    .block-info {
+        margin-bottom: 30px;
+        .block-info-link {
+            display: block;
+        }
+        .block-info-img {
+            max-width: 697px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            img {
+                display: block;
+                width: 100%;
+                -webkit-transition: 0.35s;
+                transition: 0.35s;
+            }
+        }
+        .title {
+            margin-top: 20px;
+            margin-bottom: 11px;
+            line-height: 1.4em;
+            text-transform: uppercase;
+            -webkit-transition: 0.35s;
+            transition: 0.35s;
+            color: #252525;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .text-cut-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .text-sm {
+            font-size: 16px;
+            line-height: 1.6em;
+        }
+        hr {
+            width: 100%;
+            height: 3px;
+            background-color: $primary;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .btn {
+            display: inline-block;
+            vertical-align: bottom;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            background: none;
+            -webkit-transition: .35s;
+            transition: .35s;
+            text-transform: uppercase;
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: bold;
+            padding: 16px 22px;
+            border-radius: 10px;
+            color: #252525;
+        }
+        .btn-fix-2 {
+            max-width: 257px;
+            width: 100%;
+        }
+        .btn-primary {
+            border: 2px solid $primary;
+            background: $primary;
+        }
+        .btn-primary:hover {
+            background: #fff;
+        }
+        .btn-small {
+            padding: 14px 16px;
+            font-size: 14px;
+            line-height: 14px;
+        }   
+        .btn-block-center {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+    .block-info:hover{
+        .title {
+            color: $primary;
+        }
+        img {
+            -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+        }
+    } 
+}
+
+
+.discount-one {
+    width: 100%;
+}
+:focus, :hover, :active, :visited {
+    outline: none;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    -webkit-transition: .35s;
+    transition: .35s;
+}
+a {
+    cursor: pointer;
 }

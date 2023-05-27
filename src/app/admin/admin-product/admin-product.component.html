@@ -1,1 +1,78 @@
-<p>admin-product works!</p>
+<div class="row ps-4">
+    <div class="col-12">
+        <button _ngcontent-ahf-c68="" data-rel="4" class="btn btn-fix-2 btn-primary btn-block" (click)="openAddProduct()">Додати продукт</button>
+        <div class="col-8" *ngIf="addStatus">
+            <form [formGroup]="productForm" class="form" id="user-edit-password" (ngSubmit)="addProduct()">
+                <select formControlName="category" class="form-select" (blur)="blurCategory()" [ngClass]="{'red': isRedCategory}">
+                    <option [ngValue]="category" *ngFor="let category of adminCategories">{{category.name}}
+                    </option>
+                </select>
+                <div class="box-button-1">
+                    <input type="text" formControlName="name" name="name" placeholder="*Назва" class="input" required="" (blur)="blurName()" [ngClass]="{'red': isRedName}">
+                    <input type="text" formControlName="path" name="path" placeholder="*Шлях" class="input" required="" (blur)="blurPath()" [ngClass]="{'red': isRedPath}">
+                </div>        
+                <input formControlName="ingredients" name="ingredients" id="" placeholder="*Інгредієнти" class="input" required="" (blur)="blurIngredients()" [ngClass]="{'red': isRedIngredients}">
+                <div class="box-button-1">
+                    <input type="text" formControlName="weight" name="weight" placeholder="*Вага" class="input" required="" (blur)="blurWeight()" [ngClass]="{'red': isRedWeight}">
+                    <input type="text" formControlName="price" name="price" placeholder="*Ціна" class="input" required="" (blur)="blurPrice()" [ngClass]="{'red': isRedPrice}">
+                </div> 
+                <ng-container *ngIf="!isUploaded">
+                    <input type="file" class="input" (change)="upload($event)">
+                    <div class="progress mb-3">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" 
+                        [style.width.%]="uploadPercent" 
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="isUploaded">
+                    <div class="delete-image">
+                        <img [src]="valueByControl('imagePath')" alt="" class="mb-3" style="width: 100px">
+                        <button type="button" class="btn mb-3" (click)="deleteImage()">Видалити файл</button>
+                    </div>
+                </ng-container>
+                
+                
+                <div class="cabinet_address-buttons">
+                    <button class="btn btn-fix-2 btn-primary btn-block" type="submit" 
+                    [disabled]="productForm.invalid"> {{ editStatus ? 'Зберегти зміни' : 'Зберегти' }} </button>
+                </div>
+            </form>
+        </div>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Категорія</th>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Інгредієнти</th>
+                    <th scope="col">Вага</th>
+                    <th scope="col">Ціна</th>
+                    <th scope="col">Картинка</th>
+                    <th scope="col">Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of adminProducts; let i=index">
+                    <td> № {{ i+1 }} </td>
+                    <td> {{ product.category.name }} </td>
+                    <td> {{ product.name }} </td>
+                    <td style="color: #252525">
+                        {{ product.ingredients }} 
+                        <span *ngIf="product.ingredients.length > 60">...</span> 
+                    </td>
+                    <td> {{ product.weight }} </td>
+                    <td> {{ product.price }} </td>
+                    <td>
+                        <img [src]="product.imagePath" alt="" height="50px">
+                    </td>
+                    <td>
+                        <div class="box-button-2">
+                            <button (click)="editProduct(product)" type="button" class="edit">Редагувати</button>
+                            <button [disabled]="editStatus" (click)="deleteProduct(product)" type="button" class="delete">Видалити</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

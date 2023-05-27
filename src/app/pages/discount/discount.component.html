@@ -1,12 +1,24 @@
-<!-- <div class="container mt-3 mb-3">
-    <div class="row">
+<div class="container">
+    <div class="line"></div>
+    <h1>Акціїї</h1>
+</div>
+<div class="container mt-3 mb-3" style="max-width: 1750px">
+    <div class="row justify-content-center">
         <ng-container *ngIf="userDiscounts.length > 0">
-            <div class="col-6 mt-3" *ngFor="let discount of userDiscounts">
-                <div class="card w-100">
-                    <img [src]="discount.imagePath" class="card-img-top" alt="...">
-                    <div class="card-body text-center">
-                        <a class="btn btn-warning" [routerLink]="[ '/discount', discount.id ]">Детальніше</a>
+            <div class="col-xl-5 col-md-6 col-12" [ngClass]="{'discount-one': userDiscounts.length < 2}" *ngFor="let discount of userDiscounts">
+                <div class="block-info">
+                    <a class="block-info-link" [routerLink]="[ '/discount', discount.id ]">
+                        <div class="block-info-img">
+                            <img [src]="discount.imagePath" alt="" oncontextmenu="return false" class="imgLoaded">
+                        </div>
+                        <h5 class="title text-cut-2 text-center">Рол тижня</h5>
+                    </a>
+                    <div class="text-sm text-cut-3">
                     </div>
+                    <hr>
+                    <button type="button" class="btn btn-small btn-primary btn-block-center btn-fix-2"
+                        [routerLink]="[ '/discount', discount.id ]">дізнатись
+                        більше</button>
                 </div>
             </div>
         </ng-container>
@@ -17,11 +29,7 @@
                     <h1 class="text-center">Discounts not added yet</h1>
                 </div>
                 <div class="card-footer text-muted"></div>
-              </div>
+            </div>
         </ng-container>
     </div>
-</div> -->
-<div class="container">
-    <div class="line"></div>
-    <h1>Акціїї</h1>
 </div>

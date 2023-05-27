@@ -11,9 +11,27 @@
   ],
   "categories": [
     {
-      "name": "роли",
+      "name": "Роли",
       "path": "rolls",
       "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-2966d.appspot.com/o/images%2Fnav-img-sets.svg?alt=media&token=fe9c8254-ee15-4662-8f25-b5c909ea5ae1",
+      "id": 1
+    }
+  ],
+  "products": [
+    {
+      "category": {
+        "name": "Роли",
+        "path": "rolls",
+        "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-2966d.appspot.com/o/images%2Fnav-img-sets.svg?alt=media&token=fe9c8254-ee15-4662-8f25-b5c909ea5ae1",
+        "id": 1
+      },
+      "name": "Філадельфія з лососем",
+      "path": "filadelfiya-z-lososem",
+      "ingredients": "Риc, крем сир, огірок, лосось",
+      "weight": "280",
+      "price": "267",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-2966d.appspot.com/o/images%2F1.-filadelfiya-z-lososem.jpg.pagespeed.ce.axvTz8qDqj.jpg?alt=media&token=49831140-99b5-4f96-83ab-c68726b802b4",
+      "count": 1,
       "id": 1
     }
   ]
