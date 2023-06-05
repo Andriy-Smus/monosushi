@@ -20,31 +20,35 @@
         <div class="col-sm-6 col-lg-4 col-xl-3" *ngFor="let product of userProducts">
             <div class="product js-product border-1" data-price="267">
                 <div class="product_image-wrap">
-                    <a class="product_image" [routerLink]="[ '/product-info' ]">
+                    <a class="product_image" [routerLink]="[ '/product/'+product.category.path, product.id ]">
                         <img class="img img-default imgLoaded"
                             [src]="product.imagePath" alt="" oncontextmenu="return false">
                     </a>
                 </div>
                 <div class="product_title-wrap">
                     <div class="product_title title h5 m-auto">
-                        <a [routerLink]="[ '/product-info' ]" itemprop="name"> {{ product.name }} </a>
+                        <a [routerLink]="[ '/product/'+product.category.path, product.id ]" itemprop="name"> {{ product.name }} </a>
                     </div>
                 </div>
                 <div class="product_desc">
                     <p> {{ product.ingredients }} </p>
-                    <div class="product_size"><span class="size"> {{ product.weight }} </span> г</div>
+                    <div class="product_size">
+                        <span class="size"> {{ product.weight }} </span>
+                        <span *ngIf="product.category.name === 'Напої'">л</span>
+                        <span *ngIf="product.category.name !== 'Напої'">г</span>
+                    </div>
                 </div>
                 <div class="product_controls">
                     <div class="product_price-wrap">
-                        <div class="product_price" itemprop="price"><b class="price"> {{ product.price }} </b> грн</div>
+                        <div class="product_price" itemprop="price"><b class="price"> {{ product.price * product.count }} </b> грн</div>
                         <!-- <div class="product_price-old hidden"><b class="price-old">267</b> грн</div> -->
                     </div>
                     <div class="thumb-input-number">
-                        <button type="button" class="decrement">-</button>
-                        <input value="1" readonly="" class="product-qty" tabindex="-1" max="999">
-                        <button type="button" class="increment">+</button>
+                        <button (click)="productCount(product, false)" type="button" class="decrement">-</button>
+                        <input [value]="product.count" class="product-qty" tabindex="-1" max="999">
+                        <button (click)="productCount(product, true)" type="button" class="increment">+</button>
                     </div>
-                    <button class="btn btn-small btn-primary order-btn add-to-cart-btn" data-id="600">Замовити</button>
+                    <button (click)="addToBasket(product)" class="btn btn-small btn-primary order-btn add-to-cart-btn" data-id="600">Замовити</button>
                 </div>
             </div>
         </div>

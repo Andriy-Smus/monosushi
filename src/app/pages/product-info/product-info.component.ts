@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IProductResponse } from 'src/app/shared/interfaces/product/product.interface';
+import { OrderService } from 'src/app/shared/services/order/order.service';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
   selector: 'app-product-info',
@@ -7,9 +11,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductInfoComponent implements OnInit {
 
-  constructor() { }
+  public currentProduct!: IProductResponse;
+
+  constructor(
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute,
+    private orderService: OrderService
+  ) { }
 
   ngOnInit(): void {
+    // this.loadProduct()
+    this.activatedRoute.data.subscribe(response => {
+      this.currentProduct = response.productInfo;
+    })
+  }
+
+  loadProduct(): void {
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.productService.getOne(id).subscribe(data => {
+      this.currentProduct = data;
+    })
+  }
+
+  productCount(product: IProductResponse, value: boolean): void {
+    if (value) {
+      ++product.count;
+    } else if (!value && product.count > 1) {
+      --product.count;
+    }
+  }
+
+  addToBasket(product: IProductResponse): void {
+    let basket: Array<IProductResponse> = [];
+    if(localStorage.length > 0 && localStorage.getItem('basket')){
+      basket = JSON.parse(localStorage.getItem('basket') as string);
+      if(basket.some(prod => prod.id === product.id)){
+        const index = basket.findIndex(prod => prod.id === product.id);
+        basket[index].count += product.count;
+      } else {
+        basket.push(product);
+      }
+    } else {
+      basket.push(product);
+    }
+    localStorage.setItem('basket', JSON.stringify(basket));
+    this.orderService.changeBasket.next(true);
+    product.count = 1;
   }
 
 }

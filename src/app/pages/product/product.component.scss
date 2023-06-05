@@ -216,6 +216,18 @@
         font-size: 16px;
         line-height: 1.5em;
     }
+    .product_size {
+        max-width: 60px;
+        padding-left: 15px;
+        min-width: 60px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1.6em;
+        color: #5a5a5a;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
 }
 .product_controls {
     display: -webkit-box;

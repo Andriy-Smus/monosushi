@@ -1,1 +1,63 @@
-<p>product-info works!</p>
+<div class="container" style="margin: 140px auto 40px">
+    <ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+            <a itemprop="item" [routerLink]="[ '/' ]">
+                <span itemprop="name">Головна</span>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+            <a itemprop="item" [routerLink]="[ '/product', currentProduct?.category?.path ]">
+                <span itemprop="name"> {{ currentProduct.category.name }} </span>
+            </a>
+        </li>
+        <li class="active" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+            <span itemprop="name"> {{ currentProduct.name }} </span>
+        </li>
+    </ul>
+</div>
+<div class="row justify-content-center" itemscope="" itemtype="http://schema.org/Product">
+    <div class="col-md-6 col-xl-4">
+        <div class="swiper-entry product_detail-swiper">
+            <div class="swiper-container swiper-container-initialized swiper-container-horizontal"
+                data-optionsdata-options="{&quot;spaceBetween&quot;:30 }">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-active" style="width: 372px;">
+                        <div class="product_detail-img">
+                            <img class="img swiper-lazy swiper-lazy-loaded" [src]="currentProduct.imagePath"
+                            alt="currentProduct?.name" oncontextmenu="return false">
+                        </div>
+                    </div>
+                </div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            </div>
+            <div
+                class="swiper-pagination swiper-pagination-relative swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-lock">
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4 align-self-center">
+        <div class="product_detail js-product js-product-detail">
+            <h1 class="title h2" itemprop="name"> {{ currentProduct.name }} </h1>
+            <div class="description"><b>Склад: </b> {{ currentProduct.ingredients }} </div>
+            <div class="product_size"><b>Вага: </b>
+                <span class="size"> {{ currentProduct.weight }} </span>
+                <span *ngIf="currentProduct.category.name === 'Напої'">л</span>
+                <span *ngIf="currentProduct.category.name !== 'Напої'">г</span>
+            </div>
+            <ul class="product_variations"></ul>
+            <div class="product_detail-controls">
+                <div class="product_price-wrap">
+                    <div class="product_price" itemprop="price"><b class="price"> {{ currentProduct.price * currentProduct.count }} </b> грн</div>
+                    <!-- <div class="product_price-old "><b class="price-old">177</b> грн</div> -->
+                </div> 
+                <input type="hidden" value="1" readonly="" class="product-qty" tabindex="-1"> 
+                <div class="thumb-input-number">
+                    <button (click)="productCount(currentProduct, false)" type="button" class="decrement">-</button>
+                    <input [value]="currentProduct.count" class="product-qty" tabindex="-1" max="999">
+                    <button (click)="productCount(currentProduct, true)" type="button" class="increment">+</button>
+                </div>
+                <button (click)="addToBasket(currentProduct)" class="btn btn-small btn-primary order-btn add-to-cart-btn" data-id="24113">ЗАМОВИТИ</button>
+            </div>
+        </div>
+    </div>
+</div>

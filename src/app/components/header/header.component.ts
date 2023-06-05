@@ -1,4 +1,6 @@
 import { Component, OnInit, HostListener, ElementRef, Renderer2 } from '@angular/core';
+import { IProductResponse } from 'src/app/shared/interfaces/product/product.interface';
+import { OrderService } from 'src/app/shared/services/order/order.service';
 
 
 @Component({
@@ -8,7 +10,11 @@ import { Component, OnInit, HostListener, ElementRef, Renderer2 } from '@angular
 })
 export class HeaderComponent implements OnInit {
 
-  isActive = false;
+  public isActive = false;
+  public basketIsActive = false;
+  public total = 0;
+  public basket: Array<IProductResponse> = [];
+  public count = 0;
 
   activeList() {
     this.isActive = !this.isActive;
@@ -16,7 +22,11 @@ export class HeaderComponent implements OnInit {
 
   isScrolled = false;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private elementRef: ElementRef, 
+    private renderer: Renderer2,
+    private orderService: OrderService
+  ) {}
 
   @HostListener('window:scroll')
   onWindowScroll() {
@@ -33,6 +43,79 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadBasket(),
+    this.updateBasket()
+  }
+
+  loadBasket(): void {
+    if(localStorage.length > 0 && localStorage.getItem('basket')){
+      this.basket = JSON.parse(localStorage.getItem('basket') as string);
+    }
+    this.getTotalPrice();
+    this.getTotalCount();
+  }
+
+  getTotalPrice(): void {
+    this.total = this.basket
+      .reduce((total: number, prod: IProductResponse) => total + prod.count * prod.price, 0);
+  }
+  getTotalCount(): void {
+    this.count = this.basket
+      .reduce((count: number, prod: IProductResponse) => count + prod.count, 0);
+  }
+
+  updateBasket(): void {
+    this.orderService.changeBasket.subscribe(() => {
+      this.loadBasket();
+    })
+  }
+
+  basketActive(): void {
+    this.basketIsActive = !this.basketIsActive;
+  }
+
+  productCount(product: IProductResponse, value: boolean): void {
+    if (value) {
+      ++product.count;
+    } else if (!value && product.count > 1) {
+      --product.count;
+    }
+    // product.count = 1;
+  }
+
+  addToBasket(product: IProductResponse): void {
+    let basket: Array<IProductResponse> = [];
+    if(localStorage.length > 0 && localStorage.getItem('basket')){
+      basket = JSON.parse(localStorage.getItem('basket') as string);
+      if(basket.some(prod => prod.id === product.id)){
+        const index = basket.findIndex(prod => prod.id === product.id);
+        basket[index].count = product.count;
+      } else {
+        basket.push(product);
+      }
+    } else {
+      basket.push(product);
+    }
+    localStorage.setItem('basket', JSON.stringify(basket));
+    this.orderService.changeBasket.next(true);
+    product.count = 1;
+  }
+
+  closeBasket(): void { 
+    this.basketIsActive = false;
+  }
+
+  deleteProduct(product: IProductResponse): void {
+    let basket: Array<IProductResponse> = [];
+    if (localStorage.length > 0 && localStorage.getItem('basket')) {
+      basket = JSON.parse(localStorage.getItem('basket') as string);
+      if (basket.some(prod => prod.id === product.id)) {
+        const index = basket.findIndex(prod => prod.id === product.id);
+        basket.splice(index, 1); // Видаляємо елемент з масиву `basket`
+      }
+    }
+    localStorage.setItem('basket', JSON.stringify(basket));
+    this.orderService.changeBasket.next(true);
   }
 
 }

@@ -1,0 +1,254 @@
+@import '../../shared/styles/variables';
+
+.container {
+    width: 100%;
+    max-width: 1750px;
+    padding-left: 15px;
+    padding-right: 15px;
+    .breadcrumbs {
+        margin-top: 25px px;
+        font-size: 12px;
+        line-height: 13px;
+        li {
+            position: relative;
+            display: inline-block;
+            transition: none;
+            text-transform: capitalize;
+            a:hover {
+                color: #252525;
+            }
+        }
+    
+        li:after {
+            content: "";
+            position: relative;
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #5a5a5a;
+            margin: 0 10px 2px;
+        }
+    
+        li.active {
+            text-decoration: none;
+        }
+    
+        li:last-of-type::after {
+            display: none;
+        }
+    }
+}
+
+.swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        transition-property: transform;
+        box-sizing: content-box;
+        cursor: url(//monosushi.com.ua/wp-content/themes/monosushi/css/../img/drag.png) 16 9,ew-resize;
+        transition-duration: 0ms;
+        transform: translate3d(0px, 0px, 0px);
+        .swiper-slide {
+            flex-shrink: 0;
+            width: 480px;
+            height: 100%;
+            position: relative;
+            transition-property: transform;
+            .product_detail-img {
+                position: relative;
+                display: block;
+                height: 400px;
+                padding-bottom: 0;
+                .img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    -webkit-transform: translate(-50%,-50%);
+                    transform: translate(-50%,-50%);
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}
+.product_detail {
+    margin-left: 50px;
+    margin-bottom: 37px;
+    .title {
+        margin-bottom: 15px;
+    }
+    .description {
+        margin-bottom: 5px;
+        b {
+            color: $primary;
+        }
+    }
+    .product_size {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        line-height: 1.4em;
+        color: #5a5a5a;
+        b {
+            color: $primary;
+        }
+    }
+    .product_variations {
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    .product_detail-controls {
+        margin-top: 30px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        .product_price-wrap {
+            position: relative;
+            max-width: 100%;
+            .product_price {
+                color: #252525;
+                font-weight: 400;
+                font-size: 20px;
+                width: 84px;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        .thumb-input-number {
+            display: -webkit-inline-box;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            border: 1px solid #dcdcdc;
+            border-radius: 10px;
+            color: #252525;
+            font-size: 16px;
+            line-height: 16px;
+            margin-right: auto;
+            margin-left: auto;
+            button {
+                width: 28px;
+                margin: 2px;
+                height: 36px;
+                cursor: pointer;
+                background: none;
+                transition: 0.35s;
+                font-size: 24px;
+                line-height: 24px;
+                color: #5a5a5a;
+                background-color: #fff;
+                border-radius: 10px;
+                padding-bottom: 2px;
+                border: none;
+            }
+            button:hover {
+                background-color: $primary;
+            }
+            input {
+                width: 30px;
+                height: 44px;
+                font-weight: 600;
+                text-align: center;
+            }
+        }
+        .btn {
+            display: inline-block;
+            vertical-align: bottom;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            background: 0 0;
+            -webkit-transition: .35s;
+            transition: .35s;
+            text-transform: uppercase;
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 700;
+            padding: 16px 22px;
+            border-radius: 10px;
+            color: #252525;
+        }
+        .btn-small {
+            padding: 14px 16px;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        .btn-primary {
+            border: 2px solid $primary;
+            background: $primary;
+        }
+        .btn-primary:hover {
+            background: #fff;
+        }
+    }
+}
+
+
+input, textarea, select {
+    border-radius: 0;
+    background: none;
+    border: none;
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+.img {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: top;
+}
+ul,
+ol {
+    list-style: none;
+}
+
+.title {
+    color: #252525;
+    font-weight: bold;
+}
+
+h2,
+.h2 {
+    font-size: 42px;
+    line-height: 1.2em;
+}
+
+:focus,
+:hover,
+:active,
+:visited {
+    outline: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    -webkit-transition: .35s;
+    transition: .35s;
+}
+
+a {
+    cursor: pointer;
+}
