@@ -100,5 +100,21 @@
       "count": 1,
       "id": 4
     }
+  ],
+  "auth": [
+    {
+      "id": 1,
+      "email": "admin@gmail.com",
+      "password": "qwerty123",
+      "fullName": "Petro Petriv",
+      "role": "ADMIN"
+    },
+    {
+      "id": 2,
+      "email": "user@gmail.com",
+      "password": "qwerty123",
+      "fullName": "Pavlo Pavliv",
+      "role": "USER"
+    }
   ]
 }

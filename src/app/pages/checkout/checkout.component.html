@@ -1,1 +1,397 @@
-<p>checkout works!</p>
+<div *ngIf="basket.length === 0" class="container box">
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="cart-empty-img">
+                <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/icons/cart-empty-img.svg" alt=""
+                    oncontextmenu="return false">
+            </div>
+            <div class="spacer-xs"></div>
+            <div class="center-info">
+                <div class="h3 title text-center">Кошик порожній</div>
+            </div>
+            <div class="spacer-sm"></div>
+            <a (click)="closeBasket()" [routerLink]="[ '' ]" class="btn btn-primary">Перейти до каталогу</a>
+        </div>
+    </div>
+</div>'
+<div *ngIf="basket.length > 0" class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-10 col-12">
+            <div class="box">
+                <div class="line"></div>
+                <h1>Оформити замовлення</h1>
+            </div>
+            <form [formGroup]="orderForm" class="form" (ngSubmit)="addOrder()">
+                <div class="form-group">
+                    <div class="checkout-products">
+                        <div *ngFor="let prod of basket">
+                            <div *ngIf="prod.count > 0" class="prod_horiz cart-product js-product"
+                                data-key="d490d7b4576290fa60eb31b5fc917ad1" data-things="1">
+                                <a class="prod_horiz-img">
+                                    <img (click)="closeBasket()" class="img" [src]="prod.imagePath"
+                                        [routerLink]="[ '/product/'+prod.category.path, prod.id ]">
+                                </a>
+                                <div class="prod_horiz-desc">
+                                    <a (click)="closeBasket()" class="title"
+                                        [routerLink]="[ '/product/'+prod.category.path, prod.id ]"> {{ prod.name }} </a>
+                                    <div class="prod_horiz-controls">
+                                        <div class="thumb-input-number" (click)="addToBasket(prod)">
+                                            <button (click)="productCount(prod, false)" class="decrement in-cart"
+                                                data-key="d490d7b4576290fa60eb31b5fc917ad1">-</button>
+                                            <input [value]="prod.count" class="product-qty" tabindex="-1" max="999"
+                                                data-id="600" data-key="d490d7b4576290fa60eb31b5fc917ad1">
+                                            <button (click)="productCount(prod, true)" class="increment in-cart"
+                                                data-key="d490d7b4576290fa60eb31b5fc917ad1">+</button>
+                                        </div>
+                                        <div class="price_default">
+                                            <b class="price"> {{ prod.price * prod.count }} </b>
+                                            грн
+                                        </div>
+                                        <button (click)="deleteProduct(prod)" type="button"
+                                            class="btn-close-1 remove-product" data-key="d490d7b4576290fa60eb31b5fc917ad1">
+                                            <div class="trash"></div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="basket.length > 0" class="price-wrapp text-right">
+                        До оплати: <span><b class="all-product-price-el" data-total="267"> {{ total }} </b>
+                            грн</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row form-group-row">
+                        <div class="col-md-6">
+                            <div class="input-button">
+                                <input type="text" class="input m-0" placeholder="Введіть промокод">
+                                <button type="button" class="btn btn-primary" id="apply-coupon">
+                                    Застосувати </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-form">
+                    <div class="form-title title">
+                        <i class="number-title"><b>1</b></i>
+                        <h5>
+                            Оберіть кількість приборів </h5>
+                    </div>
+                    <div class="row form-group-row">
+                        <div class="col-sm-6">
+                            <div class="SumoSelect" (click)="openCount()" [ngClass]="{'open': isCount}">
+                                <div class="select">
+                                    <input type="text" formControlName="number_devices" [value]="selectedValue.textContent" style="display: none;">
+                                    <span #selectedValue>1</span>
+                                    <label><i></i></label>
+                                </div>
+                                <div class="optWrapper">
+                                    <ul class="options">
+                                        <li (click)="changeValue(optionLabel1.innerText)" class="opt"><label #optionLabel1>1</label></li>
+                                        <li (click)="changeValue(optionLabel2.innerText)" class="opt"><label #optionLabel2>2</label></li>
+                                        <li (click)="changeValue(optionLabel3.innerText)" class="opt"><label #optionLabel3>3</label></li>
+                                        <li (click)="changeValue(optionLabel4.innerText)" class="opt"><label #optionLabel4>4</label></li>
+                                        <li (click)="changeValue(optionLabel5.innerText)" class="opt"><label #optionLabel5>5</label></li>
+                                        <li (click)="changeValue(optionLabel6.innerText)" class="opt"><label #optionLabel6>6 +15 грн </label></li>
+                                        <li (click)="changeValue(optionLabel7.innerText)" class="opt"><label #optionLabel7>7 +30 грн </label></li>
+                                        <li (click)="changeValue(optionLabel8.innerText)" class="opt"><label #optionLabel8>8 +45 грн </label></li>
+                                        <li (click)="changeValue(optionLabel9.innerText)" class="opt"><label #optionLabel9>9 +60 грн </label></li>
+                                        <li (click)="changeValue(optionLabel10.innerText)" class="opt"><label #optionLabel10>10 +75 грн </label></li>
+                                        <li (click)="changeValue(optionLabel11.innerText)" class="opt"><label #optionLabel11>11 +90 грн </label></li>
+                                        <li (click)="changeValue(optionLabel12.innerText)" class="opt"><label #optionLabel12>12 +105 грн </label></li>
+                                        <li (click)="changeValue(optionLabel13.innerText)" class="opt"><label #optionLabel13>13 +120 грн </label></li>
+                                        <li (click)="changeValue(optionLabel14.innerText)" class="opt"><label #optionLabel14>14 +135 грн </label></li>
+                                        <li (click)="changeValue(optionLabel15.innerText)" class="opt"><label #optionLabel15>15 +150 грн </label></li>
+                                        <li (click)="changeValue(optionLabel16.innerText)" class="opt"><label #optionLabel16>16 +165 грн </label></li>
+                                        <li (click)="changeValue(optionLabel17.innerText)" class="opt"><label #optionLabel17>17 +180 грн </label></li>
+                                        <li (click)="changeValue(optionLabel18.innerText)" class="opt"><label #optionLabel18>18 +195 грн </label></li>
+                                        <li (click)="changeValue(optionLabel19.innerText)" class="opt"><label #optionLabel19>19 +210 грн </label></li>
+                                        <li (click)="changeValue(optionLabel20.innerText)" class="opt"><label #optionLabel20>20 +225 грн </label></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 count_things_study_wrapper">
+                            <div class="SumoSelect" (click)="openNumber()" [ngClass]="{'open': isNumber}">
+                                <div class="select">
+                                    <span #selectedCount>Навчальні тримачі</span>
+                                    <label><i></i></label>
+                                </div>
+                                <div class="optWrapper">
+                                    <ul class="options">
+                                        <li *ngFor="let option of numberOptions" (click)="changeCount(option)" class="opt"><label>{{ option }}</label></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="h5 form-title title">
+                        <i class="number-title"><b>2</b></i>
+                        <h5>Спосіб оплати </h5>
+                    </div>
+                    <div class="checkbox-entry-wrap payment-entry-wrap payment_method_cod">
+                        <label class="checkbox-entry">
+                            <input formControlName="payment_method" type="radio" id="payment_method_cod" class="toggle-block-control" data-block="2" data-rel="cod" name="payment_method" checked value="Оплата готівкою">
+                            <span>Оплата готівкою</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-entry-wrap payment-entry-wrap payment_method_liqpay">
+                        <label class="checkbox-entry">
+                            <input formControlName="payment_method" type="radio" id="payment_method_liqpay" class="toggle-block-control" data-block="2" data-rel="liqpay" name="payment_method" value="Безготівкова оплата">
+                            <span>Безготівкова оплата</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group delivery-form-group">
+                    <div class="h5 form-title title">
+                        <i class="number-title"><b>3</b></i>
+                        <h5>Спосіб доставки </h5>
+                    </div>
+                    <div (click)="openAddDelivery()" class="checkbox-entry-wrap">
+                        <label class="checkbox-entry">
+                            <input formControlName="delivery_method" id="driveDelivery" type="radio" name="delivery_method" class="toggle-block-control" data-min-amount="" data-discount-percent="" data-surprice="" data-block="1" data-rel="4" data-checked="courier" data-method="courier" checked="" value="Доставка курєром">
+                            <span>Доставка (У зв’язку із відключенням світла, якщо ліфт не працює кур’єр піднімається тільки до п’ятого поверху. Дякуємо за розуміння) </span>
+                        </label>
+                    </div>
+                    <div (click)="openSelfPickup()" class="checkbox-entry-wrap">
+                        <label class="checkbox-entry">
+                            <input formControlName="delivery_method" id="driveDelivery" type="radio" name="delivery_method" class="toggle-block-control" data-min-amount="" data-discount-percent="" data-surprice="&quot;Запечені моно макі з лососем&quot; в подарунок" data-block="1" data-rel="1" data-checked="courier" data-method="local_pickup" value="Самовивіз">
+                            <span>
+                                Самовивіз ( <b>"Запечені моно макі з лососем" в подарунок</b> )
+                            </span>
+                        </label>
+                    </div>
+                    <div class="checkbox-entry-wrap toggle-block" data-rel="4">
+                        <label class="checkbox-entry">
+                            <input formControlName="at_time" type="checkbox" class="toggle-block-control" data-block="4" data-rel="1" name="at_time" value="Заздалегідь" (click)="openInputTime()">
+                            <span>Заздалегідь </span>
+                        </label>
+                    </div>
+                    <div class="toggle-blocks mob-mt-30">
+                        <div class="toggle-block" data-rel="4" style="display: block;">
+                            <div class="spacer-xs dn-mobile"></div>
+                            <div class="row form-group-row">
+                                <div class="col-12 col-md-6">
+                                    <input type="text" formControlName="name" name="name" class="input" placeholder="Вашe ім’я*" [ngClass]="{'invalid': isRedName}" (input)="inputName()">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <input class="input inputmask user-phone" formControlName="phone" name="phone" type="text" value="" placeholder="Телефон*" inputmode="numeric" [ngClass]="{'invalid': isRedPhone}" (input)="inputPhone()">
+                                </div>
+                            </div>
+                            <div *ngIf="addTime" class="toggle-block local_visible" data-block="4" data-rel="1"
+                                data-min-time="00.30.00">
+                                <div class="row form-group-row">
+                                    <div class="col-sm-6">
+                                        <input formControlName="date" (input)="inputDate()" [ngClass]="{'invalid': isRedDate}" type="text" class="input calendar m-0 qaz" name="date" placeholder="Дата доставки" autocomplete="off" value="">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="SumoSelect" (click)="openTime()" [ngClass]="{'open': isTime}">
+                                            <div class="select" [ngClass]="{'invalidTime': isRedTime}">
+                                                <input type="text" formControlName="time" [value]="selectedTime.textContent" style="display: none;">
+                                                <span #selectedTime>Виберіть часовий інтервал</span>
+                                                <label><i></i></label>
+                                            </div>
+                                            <div class="optWrapper">
+                                                <ul class="options">
+                                                    <li (click)="changeTime(optionLabelTime0.innerText)" class="opt"><label #optionLabelTime0>11:00 - 11:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime1.innerText)" class="opt"><label #optionLabelTime1>11:15 - 11:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime2.innerText)" class="opt"><label #optionLabelTime2>11:30 - 11:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime3.innerText)" class="opt"><label #optionLabelTime3>11:45 - 12:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime4.innerText)" class="opt"><label #optionLabelTime4>12:00 - 12:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime5.innerText)" class="opt"><label #optionLabelTime5>12:15 - 12:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime6.innerText)" class="opt"><label #optionLabelTime6>12:30 - 12:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime7.innerText)" class="opt"><label #optionLabelTime7>12:45 - 13:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime8.innerText)" class="opt"><label #optionLabelTime8>13:00 - 13:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime9.innerText)" class="opt"><label #optionLabelTime9>13:15 - 13:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime10.innerText)" class="opt"><label #optionLabelTime10>13:30 - 13:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime11.innerText)" class="opt"><label #optionLabelTime11>13:45 - 14:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime12.innerText)" class="opt"><label #optionLabelTime12>14:00 - 14:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime13.innerText)" class="opt"><label #optionLabelTime13>14:15 - 14:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime14.innerText)" class="opt"><label #optionLabelTime14>14:30 - 14:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime15.innerText)" class="opt"><label #optionLabelTime15>14:45 - 15:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime16.innerText)" class="opt"><label #optionLabelTime16>15:00 - 15:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime17.innerText)" class="opt"><label #optionLabelTime17>15:15 - 15:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime18.innerText)" class="opt"><label #optionLabelTime18>15:30 - 15:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime19.innerText)" class="opt"><label #optionLabelTime19>15:45 - 16:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime20.innerText)" class="opt"><label #optionLabelTime20>16:00 - 16:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime21.innerText)" class="opt"><label #optionLabelTime21>16:15 - 16:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime22.innerText)" class="opt"><label #optionLabelTime22>16:30 - 16:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime23.innerText)" class="opt"><label #optionLabelTime23>16:45 - 17:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime24.innerText)" class="opt"><label #optionLabelTime24>17:00 - 17:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime25.innerText)" class="opt"><label #optionLabelTime25>17:15 - 17:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime26.innerText)" class="opt"><label #optionLabelTime26>17:30 - 17:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime27.innerText)" class="opt"><label #optionLabelTime27>17:45 - 18:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime28.innerText)" class="opt"><label #optionLabelTime28>18:00 - 18:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime29.innerText)" class="opt"><label #optionLabelTime29>18:15 - 18:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime30.innerText)" class="opt"><label #optionLabelTime30>18:30 - 18:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime31.innerText)" class="opt"><label #optionLabelTime31>18:45 - 19:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime32.innerText)" class="opt"><label #optionLabelTime32>19:00 - 19:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime33.innerText)" class="opt"><label #optionLabelTime33>19:15 - 19:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime34.innerText)" class="opt"><label #optionLabelTime34>19:30 - 19:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime35.innerText)" class="opt"><label #optionLabelTime35>19:45 - 20:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime36.innerText)" class="opt"><label #optionLabelTime36>20:00 - 20:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime37.innerText)" class="opt"><label #optionLabelTime37>20:15 - 20:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime38.innerText)" class="opt"><label #optionLabelTime38>20:30 - 20:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime39.innerText)" class="opt"><label #optionLabelTime39>20:45 - 21:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime40.innerText)" class="opt"><label #optionLabelTime40>21:00 - 21:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime41.innerText)" class="opt"><label #optionLabelTime41>21:15 - 21:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime42.innerText)" class="opt"><label #optionLabelTime42>21:30 - 21:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime43.innerText)" class="opt"><label #optionLabelTime43>21:45 - 22:00</label></li>
+                                                    <li (click)="changeTime(optionLabelTime44.innerText)" class="opt"><label #optionLabelTime44>22:00 - 22:15</label></li>
+                                                    <li (click)="changeTime(optionLabelTime45.innerText)" class="opt"><label #optionLabelTime45>22:15 - 22:30</label></li>
+                                                    <li (click)="changeTime(optionLabelTime46.innerText)" class="opt"><label #optionLabelTime46>22:30 - 22:45</label></li>
+                                                    <li (click)="changeTime(optionLabelTime47.innerText)" class="opt"><label #optionLabelTime47>22:45 - 23:00</label></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="addSelfPickup" class="row form-group-row">
+                                <div class="spacer-xs"></div>
+                                <div class="col-sm-6 col-6">
+                                    <div class="SumoSelect" (click)="openAddress()" [ngClass]="{'open': isAddress}">
+                                        <div class="select">
+                                            <input type="text" formControlName="pickup_address" [value]="selectedAddress.textContent" style="display: none;">
+                                            <span #selectedAddress>Оберіть адресу самовивозу</span>
+                                            <label><i></i></label>
+                                        </div>
+                                        <div class="optWrapper">
+                                            <ul class="options">
+                                                <li (click)="changeAddress(optionLabelAddress1.innerText)"class="opt"><label #optionLabelAddress1>Чорновола 95</label></li>
+                                                <li (click)="changeAddress(optionLabelAddress2.innerText)"class="opt"><label #optionLabelAddress2>Володимира Великого 10Б</label></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer-xs"></div>
+                            <div *ngIf="addDelivery" class="row form-group-row inputs-wrap">
+                                <div class="col-12 col-sm-6">
+                                    <input formControlName="street" id="streetAutocomplete" class="input ui-autocomplete-input" type="text" placeholder="Вулиця*" name="street" value="" autocomplete="off" (input)="inputStreet()">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input formControlName="house" id="houseNumber" class="input" type="text" placeholder="Номер будинку*" name="house" value="" maxlength="8" (input)="inputHouse()">
+                                </div>
+                                <div class="col-6">
+                                    <input formControlName="entrance" type="text" class="input" name="entrance" maxlength="6" placeholder="Під'їзд" value="">
+                                </div>
+                                <div class="col-6">
+                                    <input formControlName="flat" type="number" class="input" name="flat" placeholder="Квартира" value="">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="checkbox-entry-wrap">
+                                <label class="checkbox-entry">
+                                    <input formControlName="no_call" type="checkbox" name="no_call" value="Зателефонуйте мені для уточнення деталей"><span>
+                                        Зателефонуйте мені для уточнення деталей </span>
+                                </label>
+                            </div>
+                            <div class="checkbox-entry-wrap d-block">
+                                <label class="checkbox-entry">
+                                    <input (click)="openComment()" type="checkbox" name="is_comment" class="toggle-block-control" data-block="3" data-rel="0"><span>Додати коментар</span>
+                                </label>
+                            </div>
+                            <div *ngIf="addComment" class="toggle-block" data-block="3" data-rel="0">
+                                <div class="spacer-xs"></div>
+                                <textarea formControlName="comment" name="comment" class="input" placeholder="Ваш коментар" spellcheck="false"></textarea>
+                            </div>
+                            <div class="checkbox-entry-wrap d-block">
+                                <label class="checkbox-entry">
+                                    <input (click)="openCommentForKitchen()" type="checkbox" name="is_comment" class="toggle-block-control" data-block="3" data-rel="1"><span>Додати коментар для кухні </span>
+                                </label>
+                            </div>
+                            <div class="spacer-xs"></div>
+                            <div *ngIf="addCommentForKitchen" class="toggle-block" data-block="3" data-rel="1">
+                                <textarea formControlName="comment_kitchen" name="comment_kitchen" class="input" placeholder="Ваш коментар для кухні" spellcheck="false"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-0">
+                                <div class="delivery-map-block">
+                                    <div class="map-block">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41173.1085644647!2d23.978450836570886!3d49.83645797508801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add82021aaaab%3A0x15e2ff76e6786de!2zTW9ub3N1c2hpLiDQlNC-0YHRgtCw0LLQutCwINGB0YPRiNGWINGDINCb0YzQstC-0LLRlg!5e0!3m2!1suk!2sua!4v1684771447221!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <input type="text" name="terminal_id" class="hidden" readonly="readonly"> -->
+                </div>
+                
+                <div class="order-wrap">
+                    <div class="deliveryWarning">
+                        <div *ngIf="isName" class="errorMsg empty-name">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>Введіть ваше ім'я</p>
+                        </div>
+                        <div *ngIf="isPhone" class="errorMsg empty-phone">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>Введіть ваш номер телефону</p>
+                        </div>
+                        <div *ngIf="(isRedDate || isRedTime) && addTime" class="errorMsg empty-delivery-date">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>Введіть дату та час доставки</p>
+                        </div>
+                        <div *ngIf="(isHouse || isStreet) && addDelivery" class="errorMsg empty-address">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>Введіть вашу адресу та номер будинку</p>
+                        </div>
+                        <!-- <div class="errorMsg empty-house">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>Невірна адреса</p>
+                        </div> -->
+                        <div *ngIf="addSelfPickup && isRedAddress" class="errorMsg select_point">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>Оберіть адресу самовивозу</p>
+                        </div>
+                        <!-- <div class="errorMsg lowOrder">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>Вибачте, сума Вашого замовлення недостатня для даної зони</p>
+                        </div> -->
+                        <!-- <div class="errorMsg noDelivery">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>Вибачте, Ваша адреса поза межею доставки</p>
+                        </div> -->
+                        <!-- <div class="errorMsg noData">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>Вибачте Ваша адреса відсутня в базі. <br>Зв'яжіться з нашими операторами для уточнення адреси доставки</p>
+                        </div> -->
+                        <!-- <div class="errorMsg noPriceRoll">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>*Для того щоб отримати "Запечені моно макі з лососем" у подарунок, мінімальна сума замовлення повинна становити 300 грн </p>
+                        </div> -->
+                        <!-- <div class="errorMsg noPriceGreen">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>*Мінімальна сума замовлення в зелену зону доставки становить 300 грн </p>
+                        </div> -->
+                        <!-- <div class="errorMsg noPriceYellow">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>*Мінімальна сума замовлення в жовту зону доставки становить 400 грн </p>
+                        </div> -->
+                        <!-- <div class="errorMsg noPriceRed">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>*Мінімальна сума замовлення в червону зону доставки становить 500 грн </p>
+                        </div> -->
+                        <!-- <div class="errorMsg noPriceOut">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>*Мінімальна сума замовлення поза межі нашої зони доставки становить 700 грн </p>
+                        </div> -->
+                        <!-- <div class="errorMsg noZone">
+                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
+                            <p>*На жаль, ваша адреса знаходиться поза межами нашої зони доставки </p>
+                        </div> -->
+                    </div>
+                    <div class="main-order-wrapp">
+                        <div class="text-center w-100">
+                            <button [disabled]="orderForm.invalid" type="submit" class="btn btn-primary main-order-button">ОФОРМИТИ ЗАМОВЛЕННЯ </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

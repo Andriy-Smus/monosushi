@@ -83,6 +83,9 @@
         // color: red;
         border-color: red;
     }
+    .red::placeholder {
+        color: red;
+    }
     .delete-image {
         display: flex;
         flex-direction: column;

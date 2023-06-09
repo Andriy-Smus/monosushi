@@ -37,3 +37,12 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
     background-color: $primary;
 }
+
+html:not(.touch-screen)::-webkit-scrollbar, html:not(.touch-screen) *::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+html:not(.touch-screen)::-webkit-scrollbar-thumb, html:not(.touch-screen) *::-webkit-scrollbar-thumb {
+    background: $primary;
+}

@@ -7,7 +7,7 @@
             <button class="nav-link" [routerLink]="[ 'product' ]" routerLinkActive="active"
             type="button">Товари</button>
             <button style="border-bottom: 1px solid #dcdcdc" class="nav-link" [routerLink]="[ 'order' ]" routerLinkActive="active" type="button">Замовлення</button>
-            <div _ngcontent-ahf-c68="" class="entrance"><button _ngcontent-ahf-c68="" data-rel="4" class="btn btn-fix-2 btn-primary btn-block" [routerLink]="[ '' ]" routerLinkActive="active">Вихід</button></div>
+            <div _ngcontent-ahf-c68="" class="entrance"><button _ngcontent-ahf-c68="" data-rel="4" class="btn btn-fix-2 btn-primary btn-block" (click)="logout()">Вихід</button></div>
         </div>
         <div class="tab-content w-100" id="v-pills-tabContent">
             <router-outlet></router-outlet>

@@ -83,7 +83,12 @@
                 <a class="header-phone" href="tel:0978780837">(097) 878 08 37</a>
                 <div class="header-work-time">Працюємо з <b>11:00</b> до <b>22:30</b></div>
             </div>
-            <div class="header-user border-1 open-popup" data-rel="1" [routerLink]="[ '/admin/discount' ]"
+            <div *ngIf="!isLogin" class="header-user border-1 open-popup" data-rel="1" [routerLink]="[ '/auth' ]"
+                routerLinkActive="route-active">
+                <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg" alt=""
+                    oncontextmenu="return false">
+            </div>
+            <div *ngIf="isLogin" class="header-user border-1 open-popup" data-rel="1" [routerLink]="[ '/'+loginUrl ]"
                 routerLinkActive="route-active">
                 <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg" alt=""
                     oncontextmenu="return false">

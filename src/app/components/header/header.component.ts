@@ -1,5 +1,7 @@
 import { Component, OnInit, HostListener, ElementRef, Renderer2 } from '@angular/core';
+import { ROLE } from 'src/app/shared/constants/role.constant';
 import { IProductResponse } from 'src/app/shared/interfaces/product/product.interface';
+import { AccountService } from 'src/app/shared/services/account/account.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 
 
@@ -16,6 +18,10 @@ export class HeaderComponent implements OnInit {
   public basket: Array<IProductResponse> = [];
   public count = 0;
 
+  public isLogin = false;
+  public loginUrl = '';
+  public loginPage = '';
+
   activeList() {
     this.isActive = !this.isActive;
   }
@@ -25,7 +31,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private elementRef: ElementRef, 
     private renderer: Renderer2,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private accountService: AccountService
   ) {}
 
   @HostListener('window:scroll')
@@ -44,7 +51,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadBasket(),
-    this.updateBasket()
+    this.updateBasket(),
+    this.checkUserLogin();
+    this.checkUpdatesUserLogin();
   }
 
   loadBasket(): void {
@@ -116,6 +125,29 @@ export class HeaderComponent implements OnInit {
     }
     localStorage.setItem('basket', JSON.stringify(basket));
     this.orderService.changeBasket.next(true);
+  }
+
+  checkUserLogin(): void {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') as string);
+    if(currentUser && currentUser.role === ROLE.ADMIN){
+      this.isLogin = true;
+      this.loginUrl = 'admin';
+      this.loginPage = 'Admin';
+    } else if(currentUser && currentUser.role === ROLE.USER) {
+      this.isLogin = true;
+      this.loginUrl = 'cabinet';
+      this.loginPage = 'Cabinet';
+    } else {
+      this.isLogin = false;
+      this.loginUrl = '';
+      this.loginPage = '';
+    }
+  }
+
+  checkUpdatesUserLogin(): void {
+    this.accountService.isUserLogin$.subscribe(() => {
+      this.checkUserLogin();
+    })
   }
 
 }
