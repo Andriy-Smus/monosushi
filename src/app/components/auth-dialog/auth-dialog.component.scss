@@ -1,0 +1,145 @@
+@import '../../shared/styles/variables';
+
+// .popup-container.size-1 {
+//     max-width: 600px;
+// }
+.popup-container {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    position: relative;
+    text-align: left;
+    background: #fff;
+    border-radius: 10px;
+    .popup-align {
+        // padding: 50px 60px 45px 60px;
+        overflow: hidden;
+        .popup-title {
+            margin-bottom: 5px;
+        }
+        .popup-form:not(:first-child) {
+            margin-top: 30px;
+        }
+        .popup-form:not(:last-child) {
+            margin-bottom: 20px;
+        }
+        .popup-form {
+            text-align: left;
+            .input {
+                margin-bottom: 15px;
+                font-weight: 400;
+            }
+        }
+        a {
+            color: #252525;
+            font-size: 16px;
+            transition: 0.35s;
+        }
+        a:hover {
+            color: $primary;
+        }
+    }
+}
+
+
+.input {
+    font-size: 16px;
+    height: 56px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    color: #252525;
+    line-height: 56px;
+    padding: 0 20px 0 23px;
+    -webkit-transition: 0.35s;
+    transition: 0.35s;
+    text-overflow: ellipsis;
+}
+.input:focus {
+    border-color: $primary;
+}
+input, textarea, select {
+    border-radius: 0;
+    background: none;
+    border: none;
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+:focus, :hover, :active, :visited {
+    outline: none;
+}
+.btn {
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    background: none;
+    -webkit-transition: .35s;
+    transition: .35s;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    padding: 16px 22px;
+    border-radius: 10px;
+    color: #252525;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.btn-primary {
+    border: 2px solid $primary;
+    background: $primary;
+}
+.btn-primary:hover {
+    background: #fff;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.text a, .article a {
+    font-size: inherit;
+    line-height: inherit;
+    position: relative;
+    font-weight: 700;
+    color: $primary;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.35s ease-out;
+}
+.text a::before, .article a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #b5d8f7;
+    transition: all 0.35s ease-out;
+}
+.text a:hover:before, .article a:hover:before {
+    width: 100%;
+    right: auto;
+    left: 0;
+}
+b, strong {
+    font-weight: 700;
+    color: #252525;
+}
+h4, .h4 {
+    font-size: 26px;
+    line-height: 1.2em;
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    color: #252525;
+}
+body, .text {
+    font-size: 18px;
+    line-height: 1.5em;
+}

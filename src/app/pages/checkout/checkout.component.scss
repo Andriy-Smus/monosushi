@@ -650,9 +650,24 @@ h3, .h3 {
             opacity: 1;
         }
     }
+    mat-form-field {
+        margin-top: -20px;
+        width: 100%;
+        .input {
+            width: -webkit-fill-available;
+        }
+        
+    }
 }
 
-
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    top: 2.4em;
+    left: 1em;
+}   
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    // transform: translateY(-1em) scale(0.75) perspective(100px);
+    display: none;
+}
 .invalidTime {
     border-color: #eb5757!important;
     color: #eb5757!important;

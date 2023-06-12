@@ -1,0 +1,24 @@
+<div class="row mx-0">
+    <div class="col-10 m-auto">
+        <div class="popup-container size-1">
+            <div class="popup-align text-center text">
+                <div class="popup-title h4"><b>Вхід в кабінет</b></div>
+                <form [formGroup]="authForm" class="form popup-form" id="login-form">
+                    <input formControlName="email" type="email" class="input" name="login" placeholder="*Ваш email" required="">
+                    <input formControlName="password" type="password" class="input" name="password" placeholder="*Пароль" required="">
+                    <button *ngIf="!isLogin" [disabled]="authForm.invalid" class="btn btn-primary btn-block" type="submit" (click)="loginUser()">Увійти в кабінет</button>
+                    <button *ngIf="isLogin" [disabled]="authForm.invalid" class="btn btn-primary btn-block" type="submit" (click)="registerUser()">Зареєструватись</button>
+                    <div class="error-message"></div>
+                </form>
+                <div class="d-auto">
+                    <!-- <a class="open-popup" data-rel="2">Забули пароль?</a> -->
+                    <a *ngIf="!isLogin" class="open-popup" data-rel="3" (click)="changeIsLogin()">Зареєструватись</a>
+                    <p *ngIf="isLogin">Вже зареєстровані?
+                        <a class="open-popup" data-rel="3" (click)="changeIsLogin()">Увійти</a>
+                    </p>
+                </div>
+            </div>
+            <!-- <button class="btn-close close-popup"><span></span></button> -->
+        </div>
+    </div>
+</div>

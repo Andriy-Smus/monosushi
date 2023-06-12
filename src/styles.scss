@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'app/shared/styles/variables';
 @import 'ngx-toastr/toastr';
+@import 'app/shared/styles/theme_material';
 
 @font-face {
     font-family: 'RotondaC';
@@ -46,3 +47,6 @@ html:not(.touch-screen)::-webkit-scrollbar, html:not(.touch-screen) *::-webkit-s
 html:not(.touch-screen)::-webkit-scrollbar-thumb, html:not(.touch-screen) *::-webkit-scrollbar-thumb {
     background: $primary;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

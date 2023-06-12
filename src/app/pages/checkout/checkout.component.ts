@@ -26,7 +26,6 @@ export class CheckoutComponent implements OnInit {
   public isRedPhone = false;
   public isRedStreet = false;
   public isRedHouse = false;
-  public isRedDate = true;
   public isRedTime = true;
   public isRedAddress = true;
 
@@ -89,13 +88,6 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.isRedHouse = false;
       this.isHouse = false;
-    }
-  }
-  inputDate(): void {
-    if(!this.orderForm.value.date) {
-      this.isRedDate = true;
-    } else {
-      this.isRedDate = false;
     }
   }
 

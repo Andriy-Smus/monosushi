@@ -1,8 +1,10 @@
 import { Component, OnInit, HostListener, ElementRef, Renderer2 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ROLE } from 'src/app/shared/constants/role.constant';
 import { IProductResponse } from 'src/app/shared/interfaces/product/product.interface';
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
+import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 
 
 @Component({
@@ -32,7 +34,8 @@ export class HeaderComponent implements OnInit {
     private elementRef: ElementRef, 
     private renderer: Renderer2,
     private orderService: OrderService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    public dialog: MatDialog
   ) {}
 
   @HostListener('window:scroll')
@@ -131,7 +134,7 @@ export class HeaderComponent implements OnInit {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') as string);
     if(currentUser && currentUser.role === ROLE.ADMIN){
       this.isLogin = true;
-      this.loginUrl = 'admin';
+      this.loginUrl = 'admin/discount';
       this.loginPage = 'Admin';
     } else if(currentUser && currentUser.role === ROLE.USER) {
       this.isLogin = true;
@@ -147,6 +150,13 @@ export class HeaderComponent implements OnInit {
   checkUpdatesUserLogin(): void {
     this.accountService.isUserLogin$.subscribe(() => {
       this.checkUserLogin();
+    })
+  }
+
+  openLoginDialog(): void {
+    this.dialog.open(AuthDialogComponent, {
+      backdropClass: 'dialog-back',
+      panelClass: 'auth-dialog'
     })
   }
 

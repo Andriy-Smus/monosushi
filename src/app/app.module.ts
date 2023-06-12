@@ -35,10 +35,15 @@ import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+
 
 import { ToastrModule } from 'ngx-toastr';
 import { AuthorizationComponent } from './pages/authorization/authorization.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
+import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -66,6 +71,7 @@ import { CabinetComponent } from './pages/cabinet/cabinet.component';
     AdminOrderComponent,
     AuthorizationComponent,
     CabinetComponent,
+    AuthDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +82,10 @@ import { CabinetComponent } from './pages/cabinet/cabinet.component';
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
-    ToastrModule.forRoot()
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    ToastrModule.forRoot(),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
