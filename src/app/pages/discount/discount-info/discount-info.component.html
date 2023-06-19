@@ -1,0 +1,45 @@
+<div>
+    <div class="container" style="margin: 140px auto 40px">
+        <ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                <a itemprop="item" [routerLink]="[ '/' ]">
+                    <span itemprop="name">Головна</span>
+                </a>
+            </li>
+            <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                <a itemprop="item" [routerLink]="[ '/discount' ]">
+                    <span itemprop="name">Акції</span>
+                </a>
+            </li>
+            <li class="active" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                <span itemprop="name"> {{ discount?.name }} </span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container" style="margin-bottom: 40px">
+    <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-10 col-12">
+            <div class="mini-banner bg-mono">
+                <div class="center-info type-2">
+                    <h2 class="title text-cut-2"> {{ discount?.title }} </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-bottom: 80px">
+    <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-10 col-12">
+            <div class="simple-page">
+                <ul>
+                    <li *ngFor="let sentence of discount?.description?.split('.')"> {{ sentence }} </li>
+                    <!-- <li>Щотижня діє знижка 50% на один з ролів у нашому меню.</li>
+                    <li>“Рол тижня” ви можете знайти на головній сторінці нашого сайту.</li>
+                    <li>Знижка діє при мінімальній сумі замовлення 300 грн.</li>
+                    <li>Ця акція не поєднується з іншими акціями.</li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

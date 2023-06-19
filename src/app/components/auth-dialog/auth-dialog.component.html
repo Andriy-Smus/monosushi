@@ -1,24 +1,63 @@
-<div class="row mx-0">
-    <div class="col-10 m-auto">
-        <div class="popup-container size-1">
-            <div class="popup-align text-center text">
-                <div class="popup-title h4"><b>Вхід в кабінет</b></div>
-                <form [formGroup]="authForm" class="form popup-form" id="login-form">
-                    <input formControlName="email" type="email" class="input" name="login" placeholder="*Ваш email" required="">
-                    <input formControlName="password" type="password" class="input" name="password" placeholder="*Пароль" required="">
-                    <button *ngIf="!isLogin" [disabled]="authForm.invalid" class="btn btn-primary btn-block" type="submit" (click)="loginUser()">Увійти в кабінет</button>
-                    <button *ngIf="isLogin" [disabled]="authForm.invalid" class="btn btn-primary btn-block" type="submit" (click)="registerUser()">Зареєструватись</button>
-                    <div class="error-message"></div>
-                </form>
-                <div class="d-auto">
-                    <!-- <a class="open-popup" data-rel="2">Забули пароль?</a> -->
-                    <a *ngIf="!isLogin" class="open-popup" data-rel="3" (click)="changeIsLogin()">Зареєструватись</a>
-                    <p *ngIf="isLogin">Вже зареєстровані?
-                        <a class="open-popup" data-rel="3" (click)="changeIsLogin()">Увійти</a>
-                    </p>
-                </div>
-            </div>
-            <!-- <button class="btn-close close-popup"><span></span></button> -->
+<ng-container *ngIf="!isLogin">
+  <div class="row mx-0">
+    <div class="col-11 m-auto">
+      <div class="popup-container size-1">
+        <div class="popup-align text-center text">
+          <div class="popup-title h4"><b>Вхід в кабінет</b></div>
+          <form [formGroup]="loginForm" class="form popup-form" id="login-form">
+            <input formControlName="email" type="email" class="input" name="login" placeholder="*Ваш email" required="">
+            <input formControlName="password" type="password" class="input" name="password" placeholder="*Пароль" required="">
+            <button [disabled]="loginForm.invalid" class="btn btn-primary btn-block" type="submit" (click)="loginUser()">Увійти в кабінет</button>
+            <div class="error-message"></div>
+          </form>
+          <div class="d-auto">
+            <!-- <a class="open-popup" data-rel="2">Забули пароль?</a> -->
+            <a class="open-popup" data-rel="3" (click)="changeIsLogin()">Зареєструватись</a>
+          </div>
         </div>
+        <!-- <button class="btn-close close-popup"><span></span></button> -->
+      </div>
     </div>
-</div>
+  </div>
+</ng-container>
+<ng-container *ngIf="isLogin">
+  <div class="row mx-0">
+    <div class="col-11 m-auto">
+      <div class="popup-container size-1">
+        <div class="popup-align text-center text">
+          <div class="popup-title h4"><b>Вхід в кабінет</b></div>
+          <form [formGroup]="registerForm" class="form popup-form">
+            <div class="box-button-1">
+              <input formControlName="firstName" type="text" class="input" name="firstName" placeholder="*Ваше ім'я"
+                     required="">
+              <input formControlName="lastName" type="text" class="input" name="lastName" placeholder="*Ваше прізвище"
+                     required="">
+            </div>
+            <input formControlName="phoneNumber" type="text" class="input" name="phone" placeholder="*Ваш телефон"
+                   required="">
+            <input formControlName="email" type="email" class="input" name="login" placeholder="*Ваш email" required="">
+            <div class="box-button-1">
+              <input (input)="checkConfirmedPassword()" formControlName="password" type="password" class="input"
+                     name="password" placeholder="*Пароль" required="">
+              <input (input)="checkConfirmedPassword()" formControlName="confirmedPassword" type="password"
+                     class="input"  name="passwordRepeat" placeholder="*Повторіть пароль" required="">
+            </div>
+            <mat-error *ngIf="checkVisibilityError('confirmedPassword', 'matchError')">
+              Підтвердження паролю не співпадає.
+            </mat-error>
+            <button [disabled]="registerForm.invalid" class="btn btn-primary btn-block" type="submit" (click)="registerUser()">Зареєструватись</button>
+            <div class="error-message"></div>
+          </form>
+          <div class="d-auto">
+            <!-- <a class="open-popup" data-rel="2">Забули пароль?</a> -->
+            <p>Вже зареєстровані?
+              <a class="open-popup" data-rel="3" (click)="changeIsLogin()">Увійти</a>
+            </p>
+          </div>
+        </div>
+        <!-- <button class="btn-close close-popup"><span></span></button> -->
+      </div>
+    </div>
+  </div>
+</ng-container>
+

@@ -1,12 +1,21 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ROLE } from 'src/app/shared/constants/role.constant';
 import { AccountService } from 'src/app/shared/services/account/account.service';
+
+export interface IRegister {
+  firstName: string;
+  lastName: string;
+  phoneNumber: number;
+  email: string;
+  password: string;
+  passwordRepeat: string;
+}
 
 @Component({
   selector: 'app-auth-dialog',
@@ -15,8 +24,11 @@ import { AccountService } from 'src/app/shared/services/account/account.service'
 })
 export class AuthDialogComponent implements OnInit {
 
-  public authForm!: FormGroup;
+  public loginForm!: FormGroup;
+  public registerForm!: FormGroup;
   public isLogin = false;
+  public checkPassword = false;
+  private registerData!: IRegister;
 
   constructor(
     public dialogRef: MatDialogRef<AuthDialogComponent>,
@@ -30,21 +42,33 @@ export class AuthDialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initAuthForm();
-  } 
+    this.initLoginForm();
+    this.initRegisterForm()
+  }
 
-  initAuthForm(): void {
-    this.authForm = this.fb.group({
+  initLoginForm(): void {
+    this.loginForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]]
     })
   }
 
+  initRegisterForm(): void {
+    this.registerForm = this.fb.group({
+      firstName: [null, [Validators.required]],
+      lastName: [null, [Validators.required]],
+      phoneNumber: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required]],
+      confirmedPassword: [null, [Validators.required]]
+    })
+  }
+
   loginUser(): void {
     this.dialogRef.close({
-      formData: this.authForm.value
+      formData: this.loginForm.value
     })
-    const { email, password } = this.authForm.value;
+    const { email, password } = this.loginForm.value;
     this.login(email, password).then(() => {
       this.toastr.success('User successfully login');
     }).catch(e => {
@@ -68,12 +92,13 @@ export class AuthDialogComponent implements OnInit {
     })
  }
 
-  registerUser(): void { 
-    const { email, password } = this.authForm.value;
+  registerUser(): void {
+    const { email, password } = this.registerForm.value;
+    this.registerData = this.registerForm.value;
     this.emailSignUp(email, password).then(() => {
       this.toastr.success('User successfully created');
       // this.isLogin = !this.isLogin;
-      this.authForm.reset();
+      this.registerForm.reset();
     }).catch(e => {
       this.toastr.error(e.message);
     })
@@ -83,9 +108,9 @@ export class AuthDialogComponent implements OnInit {
     const credential = await createUserWithEmailAndPassword(this.auth, email, password);
     const user = {
       email: credential.user.email,
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
+      firstName: this.registerData.firstName,
+      lastName: this.registerData.lastName,
+      phoneNumber: this.registerData.phoneNumber,
       address: '',
       orders: [],
       role: 'USER'
@@ -97,4 +122,24 @@ export class AuthDialogComponent implements OnInit {
     this.isLogin = !this.isLogin;
   }
 
+  checkConfirmedPassword(): void {
+    this.checkPassword = this.password.value === this.confirmed.value;
+    if(this.password.value !== this.confirmed.value) {
+      this.registerForm.controls['confirmedPassword'].setErrors({
+        matchError: 'Password confirmation does not match'
+      })
+    }
+  }
+
+  get password(): AbstractControl{
+    return  this.registerForm.controls['password']
+  }
+
+  get confirmed(): AbstractControl{
+    return  this.registerForm.controls['confirmedPassword']
+  }
+
+  checkVisibilityError(control: string, name: string): boolean | null {
+    return this.registerForm.controls[control].errors?.[name];
+  }
 }

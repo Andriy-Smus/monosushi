@@ -3,56 +3,22 @@
         <div class="col-lg-3 col-xl-2 offset-xl-2">
             <div class="nav flex-column nav-pills me-3 col-lg-3.col-xl-2.offset-xl-2" id="v-pills-tab" role="tablist"
                 aria-orientation="vertical">
-                <button class="nav-link active" type="button">Особисті дані</button>
-                <button class="nav-link" type="button">Історія замовлень</button>
-                <button style="border-bottom: 1px solid #dcdcdc" class="nav-link" type="button">Зміна паролю</button>
-                <div _ngcontent-ahf-c68="" class="entrance"><button _ngcontent-ahf-c68="" data-rel="4"
-                        class="btn btn-fix-2 btn-primary btn-block" (click)="logout()">Вихід</button></div>
+                <button class="nav-link" type="button" [routerLink]="[ 'personal' ]" routerLinkActive="active">Особисті
+                  дані</button>
+                <button class="nav-link" type="button" [routerLink]="[ 'history' ]" routerLinkActive="active">Історія
+                  замовлень</button>
+                <button style="border-bottom: 1px solid #dcdcdc" class="nav-link" type="button"
+                        [routerLink]="[ 'password' ]" routerLinkActive="active">Зміна паролю</button>
+                <div _ngcontent-ahf-c68="" class="entrance">
+                  <button _ngcontent-ahf-c68="" data-rel="4" class="btn btn-fix-2 btn-primary btn-block" (click)="logout()">Вихід</button>
+                </div>
             </div>
             <!-- <div class="tab-content w-100" id="v-pills-tabContent">
                 <router-outlet></router-outlet>
             </div> -->
         </div>
-        <div class="col-lg-9 col-xl-5 ">
-            <form class="form" id="user-edit-form">
-                <div class="form-group">
-                    <div class="form-title title">
-                        <i class="number-title"><b>1</b></i>
-                        <h5>Особисті дані</h5>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="input invalid" name="first_name" placeholder="*Ваше ім'я"
-                                value="" required="">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="input invalid" name="last_name" placeholder="*Ваше прізвище" value="" required="">
-                        </div>
-                    </div>
-                    <input class="input inputmask invalid" name="phone" type="text" inputmode="numeric"
-                        placeholder="*Ваш номер телефону" value="" required="" aria-invalid="true">
-                    <input type="email" name="email" class="input invalid" placeholder="*Ваш емейл"
-                        value="" required="">
-                </div>
-                <div class="form-group">
-                    <div class="form-title title">
-                        <i class="number-title"><b>2</b></i>
-                        <h5>Адреси</h5>
-                    </div>
-                    <div class="cabinet_address-wrap">
-                        <table class="cabinet_address">
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="cabinet_address-buttons">
-                    <button class="btn btn-fix-2 btn-four open-popup js-clear-address-fields" data-rel="address"
-                        type="button">Додати адресу</button>
-                    <button class="btn btn-fix-2 btn-primary" type="submit">Зберегти зміни</button>
-                </div>
-                <!-- <a class="btn btn-primary logout" style="margin-top: 20px" href="https://monosushi.com.ua/wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Fmonosushi.com.ua&amp;_wpnonce=3ac1888b1a">Вихід</a> -->
-            </form>
-        </div>
+      <div class="col-lg-10 col-xl-8 ">
+        <router-outlet></router-outlet>
+      </div>
     </div>
 </div>

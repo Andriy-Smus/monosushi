@@ -1,0 +1,17 @@
+<div class="row mx-0">
+  <div class="col-11 m-auto">
+    <div class="popup-container size-1">
+      <div class="popup-align text-center text">
+        <div class="popup-title title h3"><b>МИ ЗАТЕЛЕФОНУЄМО</b></div>
+        <div class="popup-description">Залиште номер телефону і наші менеджери зв’яжуться з вами</div>
+        <form class="form popup-form" id="login-form">
+          <input type="text" class="input" name="name" placeholder="Ваше ім'я" required="">
+          <input type="tel" class="input" name="phoneNumber" placeholder="Ваш номер телефону" required="">
+          <button class="btn btn-primary btn-block" type="submit">Надіслати</button>
+          <div class="error-message"></div>
+        </form>
+      </div>
+      <button class="btn-close close-popup" (click)="closeModal()"></button>
+    </div>
+  </div>
+</div>

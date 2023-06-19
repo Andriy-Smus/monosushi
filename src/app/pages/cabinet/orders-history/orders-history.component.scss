@@ -1,0 +1,14 @@
+@import "../../../shared/styles/variables";
+
+.table>:not(:first-child) {
+  border-top: 3px solid $primary;
+}
+.table>:not(caption)>*>* {
+  padding: 0.8rem 0.5rem;
+}
+
+th, td {
+  color: #5a5a5a;
+  font-weight: normal;
+  vertical-align: middle;
+}

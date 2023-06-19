@@ -5,6 +5,7 @@ import { IProductResponse } from 'src/app/shared/interfaces/product/product.inte
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
+import {CallUsComponent} from "../call-us/call-us.component";
 
 
 @Component({
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit {
   isScrolled = false;
 
   constructor(
-    private elementRef: ElementRef, 
+    private elementRef: ElementRef,
     private renderer: Renderer2,
     private orderService: OrderService,
     private accountService: AccountService,
@@ -113,7 +114,7 @@ export class HeaderComponent implements OnInit {
     product.count = 1;
   }
 
-  closeBasket(): void { 
+  closeBasket(): void {
     this.basketIsActive = false;
   }
 
@@ -155,6 +156,13 @@ export class HeaderComponent implements OnInit {
 
   openLoginDialog(): void {
     this.dialog.open(AuthDialogComponent, {
+      backdropClass: 'dialog-back',
+      panelClass: 'auth-dialog'
+    })
+  }
+
+  openCallUs(): void {
+    this.dialog.open(CallUsComponent, {
       backdropClass: 'dialog-back',
       panelClass: 'auth-dialog'
     })

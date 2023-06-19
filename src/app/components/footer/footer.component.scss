@@ -94,7 +94,7 @@ footer {
             align-items: center;
             margin-bottom: 20px;
             .copyright {
-                font-size: 14px;
+                font-size: 12px;
                 color: #5a5a5a;
                 white-space: nowrap;
                 p {
@@ -114,13 +114,13 @@ footer {
                 align-items: center;
                 .pay-card-item {
                     position: relative;
-                    width: 69px;
-                    height: 39px;
+                    width: 56px;
+                    height: 33px;
                     border: 1px solid #dcdcdc;
                     border-radius: 5px;
                     display: inline-block;
                     img {
-                        max-width: 45px;
+                        max-width: 30px;
                         position: absolute;
                         top: 50%;
                         left: 50%;
@@ -178,9 +178,9 @@ footer {
                     .icon-btn:hover {
                         background: transparent;
                     }
-                }                
+                }
             }
-            .develope {
+            .developer {
                 a {
                     display: -webkit-box;
                     display: -ms-flexbox;
@@ -217,7 +217,7 @@ footer {
                     background-position: right center;
                     background-size: 100%;
                     content: '';
-                    right: 0px;
+                    right: 12px;
                     top: 0px;
                     position: absolute;
                     height: 100%;
@@ -245,3 +245,163 @@ p {
     margin: 0;
 }
 
+@media (max-width: 991px) {
+  footer .footer-inner  .footer-top {
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 0 15px;
+    padding: 15px 0;
+    .menu-list, .logo {
+      margin: 0 auto;
+    }
+    .menu-list li+li {
+      margin-left: 25px;
+    }
+    .logo {
+      max-width: 110px;
+    }
+    .footer-info {
+      width: 100%;
+      max-width: 100%;
+      -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+      order: 2;
+      margin: 0 auto;
+      margin-top: 15px;
+    }
+    .footer-info>* {
+      line-height: 1.5em;
+      font-size: 14px;
+    }
+  }
+  footer .footer-inner .footer-bottom {
+    margin: 0 15px;
+    margin-bottom: 15px;
+    .social ul .icon-btn {
+      width: 35px;
+      height: 35px;
+      img {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  footer .footer-inner .footer-top {
+    .menu-list {
+      -webkit-box-ordinal-group: 2;
+      order: 1;
+      width: 100%;
+      flex-basis: 100%;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      flex-direction: column;
+      -webkit-box-align: center;
+      align-items: center;
+      margin-top: 10px;
+      li+li {
+        margin-left: 0;
+      }
+      a {
+        font-size: 14px;
+      }
+    }
+    .footer-info {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+    .footer-info>*+* {
+      margin-left: 0;
+      margin-top: 5px;
+    }
+    .social {
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      flex-basis: 100%;
+      margin-top: 15px;
+      span {
+        display: none;
+      }
+      ul {
+        display: flex;
+        li+li {
+          margin-left: 5px;
+        }
+        .icon-btn {
+          display: block;
+          width: 35px;
+          height: 35px;
+          background: $primary;
+          border: 2px solid $primary;
+          border-radius: 10px;
+          position: relative;
+          -webkit-transition: 0.35s;
+          -o-transition: 0.35s;
+          transition: 0.35s;
+          img {
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+          }
+        }
+        .icon-btn:hover {
+          background: transparent;
+        }
+      }
+    }
+  }
+  footer .footer-inner .footer-bottom {
+    margin: 0 15px 15px;
+    flex-wrap: wrap;
+    .social {
+      display: none;
+    }
+    .copyright {
+      -webkit-box-ordinal-group: 2;
+      order: 1;
+      p {
+        display: block;
+        line-height: 1em;
+        margin-right: 0;
+      }
+    }
+    .pay-cards {
+      margin: 0 auto;
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 15px;
+      -webkit-box-ordinal-group: 1;
+      order: 0;
+      .pay-card-item {
+        vertical-align: middle;
+        img {
+          max-width: 30px;
+        }
+      }
+    }
+    .developer {
+      -webkit-box-ordinal-group: 2;
+      order: 1;
+      a {
+        -webkit-box-pack: end;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+}

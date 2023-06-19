@@ -70,7 +70,7 @@
                 </ul>
             </div>
             <div class="header-call-back">
-                <button class="btn open-popup" data-rel="4">
+                <button class="btn open-popup" data-rel="4" (click)="openCallUs()">
                     <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/phone.svg" alt=""
                         oncontextmenu="return false">
                     <span>МИ ЗАТЕЛЕФОНУЄМО</span>
@@ -157,7 +157,7 @@
                 <a (click)="closeBasket()" [routerLink]="[ '/checkout' ]" class="btn btn-secondary"
                     id="cart-submit" [ngClass]="{'disabled': basket.length === 0}">ОФОРМИТИ ЗАМОВЛЕННЯ</a>
             </div>
-        </div> 
+        </div>
         <!-- <button class="btn-close cart-close"><span></span></button> -->
         <div class="ajax-loader"></div>
     </div>
