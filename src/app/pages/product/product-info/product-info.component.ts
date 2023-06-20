@@ -21,7 +21,7 @@ export class ProductInfoComponent implements OnInit {
 
   ngOnInit(): void {
     // this.loadProduct()
-    this.activatedRoute.data.subscribe(response => {
+    this.activatedRoute.data?.subscribe(response => {
       this.currentProduct = response.productInfo;
     })
   }

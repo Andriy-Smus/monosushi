@@ -87,13 +87,12 @@ export class HeaderComponent implements OnInit {
     this.basketIsActive = !this.basketIsActive;
   }
 
-  productCount(product: IProductResponse, value: boolean): void {
+  productCount(prod: IProductResponse, value: boolean): void {
     if (value) {
-      ++product.count;
-    } else if (!value && product.count > 1) {
-      --product.count;
+      ++prod.count;
+    } else if (!value && prod.count > 1) {
+      --prod.count;
     }
-    // product.count = 1;
   }
 
   addToBasket(product: IProductResponse): void {

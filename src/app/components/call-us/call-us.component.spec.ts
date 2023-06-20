@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CallUsComponent } from './call-us.component';
+import { MatDialogRef } from '@angular/material/dialog';
 
 describe('CallUsComponent', () => {
   let component: CallUsComponent;
@@ -8,7 +9,10 @@ describe('CallUsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CallUsComponent ]
+      declarations: [ CallUsComponent ],
+      providers: [
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
   });

@@ -33,7 +33,7 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.loginSubscription.unsubscribe();
+    this.loginSubscription?.unsubscribe();
   }
 
   initAuthForm(): void {
@@ -72,6 +72,6 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
     }, (e) => {
       console.log('error', e);
     })
-  } 
+  }
 
 }

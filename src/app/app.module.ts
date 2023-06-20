@@ -21,7 +21,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
 import { SharedModule } from './shared/shared.module';
-import {ProductModule} from "./pages/product/product.module";
+import { HttpClientModule } from '@angular/common/http';
+import { ProductModule } from './pages/product/product.module';
 import { CallUsComponent } from './components/call-us/call-us.component';
 
 @NgModule({
@@ -43,6 +44,7 @@ import { CallUsComponent } from './components/call-us/call-us.component';
     provideAuth(() => getAuth()),
     ToastrModule.forRoot(),
     SharedModule,
+    HttpClientModule,
     ProductModule
   ],
   providers: [],

@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ROLE } from 'src/app/shared/constants/role.constant';
@@ -32,7 +32,6 @@ export class AuthDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AuthDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private auth: Auth,

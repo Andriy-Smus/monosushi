@@ -159,7 +159,7 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  closeBasket(): void { 
+  closeBasket(): void {
     this.basketIsActive = false;
   }
 
@@ -209,7 +209,6 @@ export class CheckoutComponent implements OnInit {
     } else if (!value && product.count > 1) {
       --product.count;
     }
-    // product.count = 1;
   }
 
   addToBasket(product: IProductResponse): void {

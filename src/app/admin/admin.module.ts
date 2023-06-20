@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminCategoryComponent } from './admin-category/admin-category.component';
 import { AdminProductComponent } from './admin-product/admin-product.component';
 import { AdminDiscountComponent } from './admin-discount/admin-discount.component';
-import { AdminNewsComponent } from './admin-news/admin-news.component';
 import { AdminOrderComponent } from './admin-order/admin-order.component';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { AdminOrderComponent } from './admin-order/admin-order.component';
     AdminCategoryComponent,
     AdminProductComponent,
     AdminDiscountComponent,
-    AdminNewsComponent,
     AdminOrderComponent
   ],
   imports: [
