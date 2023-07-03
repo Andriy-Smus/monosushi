@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IDiscountResponse } from 'src/app/shared/interfaces/discount/discount.interface';
 import { DiscountService } from 'src/app/shared/services/discount/discount.service';
 import { ImageService } from 'src/app/shared/services/image/image.service';
-// import { ref } from 'firebase/storage';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-discount',
@@ -15,7 +15,7 @@ export class AdminDiscountComponent implements OnInit {
   public adminDiscounts!: IDiscountResponse[];
   public editStatus = false;
   public addStatus = false;
-  private editID!: number;
+  private editID!: number | string;
   public isRedName = false;
   public isRedTitle = false;
   public isRedDescription = false;
@@ -27,7 +27,8 @@ export class AdminDiscountComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private discountService: DiscountService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -67,8 +68,11 @@ export class AdminDiscountComponent implements OnInit {
   }
 
   getDiscounts(): void {
-    this.discountService.getAll().subscribe(data => {
-      this.adminDiscounts = data;
+    this.discountService.getAllFirebase().subscribe(data => {
+      this.adminDiscounts = data as IDiscountResponse[];
+      this.adminDiscounts.forEach(discount => {
+        discount.data = discount.data.toDate();
+      });
     })
   }
 
@@ -78,16 +82,19 @@ export class AdminDiscountComponent implements OnInit {
 
   addDiscount(): void {
     if(this.editStatus) {
-      this.discountService.update(this.discountForm.value, this.editID).subscribe(() => {
+      this.discountService.updateFirebase(this.discountForm.value, this.editID as string).then(() => {
         this.getDiscounts();
+        this.toastr.success('Акція успішно змінена!');
       })
     } else {
-      this.discountService.create(this.discountForm.value).subscribe(() => {
+      this.discountService.createFirebase(this.discountForm.value).then(() => {
         this.getDiscounts();
+        this.toastr.success('Акція успішно створена!');
       })
     }
     this.editStatus = false;
     this.discountForm.reset();
+    this.discountForm.value.data = new Date();
     this.isUploaded = false;
     this.uploadPercent = 0;
     this.addStatus = false;
@@ -108,8 +115,9 @@ export class AdminDiscountComponent implements OnInit {
   }
 
   deleteDiscount(discount: IDiscountResponse): void {
-    this.discountService.delete(discount.id).subscribe(() => {
+    this.discountService.deleteFirebase(discount.id as string).then(() => {
       this.getDiscounts();
+      this.toastr.success('Акція успішно видалена!');
     })
   }
 

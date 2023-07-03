@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IProductResponse } from 'src/app/shared/interfaces/product/product.interface';
 import { OrderService } from 'src/app/shared/services/order/order.service';
+import { AccountService } from '../../shared/services/account/account.service';
 
 @Component({
   selector: 'app-checkout',
@@ -42,7 +43,6 @@ export class CheckoutComponent implements OnInit {
   public addDelivery = true;
   public addSelfPickup = false;
 
-
   @ViewChild('selectedValue') selectedValue!: ElementRef;
   @ViewChild('selectedCount') selectedCount!: ElementRef;
   @ViewChild('selectedTime') selectedTime!: ElementRef;
@@ -51,7 +51,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private accountService: AccountService
   ) { }
 
   inputName(): void {
@@ -243,7 +244,35 @@ export class CheckoutComponent implements OnInit {
   }
 
   addOrder(): void {
-    console.log(this.orderForm.value)
+    function generateOrderNumber() {
+      let timestamp = Date.now().toString(); // Отримання поточного часу в мілісекундах та перетворення його в рядок
+      let orderNumber = timestamp.substr(-10); // Використовуємо останні 10 символів з рядка поточного часу
+      return orderNumber;
+    }
+    function getCurrentDateTime() {
+      let currentDate = new Date();
+      let dateTimeString = currentDate.toLocaleString(); // Отримання рядкового представлення поточної дати та часу
+      return dateTimeString;
+    }
+    function getEmailUser() {
+      let currentUserEmail = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      let matchingUser = currentUserEmail.email;
+      console.log(matchingUser)
+      if (matchingUser) {
+        return matchingUser;
+      } else {
+        return 'не авторизований'
+      }
+    }
+    const data = {
+      basket: this.basket,
+      orderForm: this.orderForm.value,
+      numberOrder: generateOrderNumber(),
+      dateTime: getCurrentDateTime(),
+      email: getEmailUser()
+    };
+    this.orderService.createFirebase(data).then(() => {
+    })
     this.orderForm.reset();
     this.toastr.success('Замовлення успішно створено!');
     this.orderForm = this.fb.group({
@@ -264,6 +293,9 @@ export class CheckoutComponent implements OnInit {
       comment: [null],
       comment_kitchen: [null]
     });
+    this.isName = true;
+    this.isPhone = true;
+    this.isHouse = true;
+    this.isStreet = true;
   }
-
 }

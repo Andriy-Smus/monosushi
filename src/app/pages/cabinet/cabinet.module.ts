@@ -6,9 +6,6 @@ import { CabinetComponent } from './cabinet.component';
 import { PersonalDataComponent } from './personal-data/personal-data.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
-
-
-
 @NgModule({
   declarations: [
     CabinetComponent,

@@ -1,25 +1,46 @@
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">№ замовлення</th>
-    <th scope="col">Дата та час</th>
-    <th scope="col">Адреса</th>
-    <th scope="col">Сума</th>
-    <th scope="col">Статус</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td></td>
-    <td></td>
-    <td style="color: #252525"></td>
-    <td></td>
-    <td>
-      <div class="box-button-2">
-<!--        <button type="button" class="edit">Виконано</button>-->
-<!--        <button type="button" class="delete">Повторити</button>-->
+<ng-container *ngIf="!noOrders">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">Дата та час</th>
+      <th scope="col">Адреса</th>
+      <th scope="col">Сума</th>
+      <th scope="col">Статус</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let order of ordersHistory">
+    <tr>
+      <td> {{ '№ ' + order.numberOrder }} </td>
+      <td> {{ order.dateTime }} </td>
+      <td style="color: #252525">   {{ order.orderForm.street ? order.orderForm.street + order.orderForm.house + ', ' +
+        order.orderForm.flat :
+        order.orderForm.delivery_method }} </td>
+      <td> {{ getTotalPrice(order.basket) }} </td>
+      <td>
+        <div class="box-button-2">
+          <button type="button" class="completed">виконано</button>
+          <button type="button" class="repeat" (click)="toCheckout()">Повторити</button>
+        </div>
+      </td>
+    </tr>
+    <tr *ngFor="let product of order.basket">
+      <td></td>
+      <td> {{ product.name }} </td>
+      <td style="color: #252525"></td>
+      <td> {{ product.count }} </td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-container *ngIf="noOrders">
+  <div class="col-xl-8">
+    <div class="history-table-wrap">
+      <div class="empty-history">
+        Поки що ви не зробили жодного замовлення
+        <a class="simple-link" [routerLink]="[ '' ]">перейти в каталог</a>
       </div>
-    </td>
-  </tr>
-  </tbody>
-</table>
+    </div>
+  </div>
+</ng-container>

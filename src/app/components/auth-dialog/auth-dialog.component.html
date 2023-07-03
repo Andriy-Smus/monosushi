@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isLogin">
   <div class="row mx-0">
-    <div class="col-11 m-auto">
+    <div class="col-12 col-md-11 m-auto">
       <div class="popup-container size-1">
         <div class="popup-align text-center text">
           <div class="popup-title h4"><b>Вхід в кабінет</b></div>
@@ -11,18 +11,16 @@
             <div class="error-message"></div>
           </form>
           <div class="d-auto">
-            <!-- <a class="open-popup" data-rel="2">Забули пароль?</a> -->
             <a class="open-popup" data-rel="3" (click)="changeIsLogin()">Зареєструватись</a>
           </div>
         </div>
-        <!-- <button class="btn-close close-popup"><span></span></button> -->
       </div>
     </div>
   </div>
 </ng-container>
 <ng-container *ngIf="isLogin">
   <div class="row mx-0">
-    <div class="col-11 m-auto">
+    <div class="col-12 col-md-11 m-auto">
       <div class="popup-container size-1">
         <div class="popup-align text-center text">
           <div class="popup-title h4"><b>Вхід в кабінет</b></div>
@@ -49,13 +47,11 @@
             <div class="error-message"></div>
           </form>
           <div class="d-auto">
-            <!-- <a class="open-popup" data-rel="2">Забули пароль?</a> -->
             <p>Вже зареєстровані?
               <a class="open-popup" data-rel="3" (click)="changeIsLogin()">Увійти</a>
             </p>
           </div>
         </div>
-        <!-- <button class="btn-close close-popup"><span></span></button> -->
       </div>
     </div>
   </div>

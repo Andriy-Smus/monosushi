@@ -1,8 +1,5 @@
 @import '../../shared/styles/variables';
 
-// .popup-container.size-1 {
-//     max-width: 600px;
-// }
 .popup-container {
     display: inline-block;
     vertical-align: middle;
@@ -12,7 +9,6 @@
     background: #fff;
     border-radius: 10px;
     .popup-align {
-        // padding: 50px 60px 45px 60px;
         overflow: hidden;
         .popup-title {
             margin-bottom: 5px;
@@ -150,4 +146,39 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 body, .text {
     font-size: 18px;
     line-height: 1.5em;
+}
+
+@media (max-width: 576px) {
+  .row {
+    padding: 0;
+    .col-12 {
+      padding: 0;
+    }
+  }
+  .popup-container {
+    .popup-align {
+      padding: 10px 0;
+      .form {
+        margin-top: 20px;
+        margin-bottom: 0;
+      }
+    }
+  }
+  .input {
+    font-size: 14px;
+    height: 46px;
+    border-radius: 5px;
+    line-height: 46px;
+    padding: 0 10px 0 13px;
+  }
+  .btn-fix-2 {
+    max-width: max-content;
+  }
+  .btn {
+    font-size: 14px;
+    line-height: 14px;
+    padding: 16px 20px;
+    border-radius: 5px;
+    border-width: 1px;
+  }
 }

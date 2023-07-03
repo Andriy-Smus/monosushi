@@ -6,12 +6,12 @@ import { ProductResolver } from '../../shared/services/product/product.resolver'
 
 const routes: Routes = [
   {
-    path: '', component: ProductComponent
+    path: '',
+    component: ProductComponent
   },
   {
-    path: ':id', component: ProductInfoComponent, resolve: {
-      productInfo: ProductResolver
-    }
+    path: ':id',
+    component: ProductInfoComponent
   }
 ];
 

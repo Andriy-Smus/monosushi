@@ -1,24 +1,21 @@
 <div class="container-fluid px-4">
-    <div class="row">
-        <div class="col-lg-3 col-xl-2 offset-xl-2">
-            <div class="nav flex-column nav-pills me-3 col-lg-3.col-xl-2.offset-xl-2" id="v-pills-tab" role="tablist"
-                aria-orientation="vertical">
-                <button class="nav-link" type="button" [routerLink]="[ 'personal' ]" routerLinkActive="active">Особисті
-                  дані</button>
-                <button class="nav-link" type="button" [routerLink]="[ 'history' ]" routerLinkActive="active">Історія
-                  замовлень</button>
-                <button style="border-bottom: 1px solid #dcdcdc" class="nav-link" type="button"
-                        [routerLink]="[ 'password' ]" routerLinkActive="active">Зміна паролю</button>
-                <div _ngcontent-ahf-c68="" class="entrance">
-                  <button _ngcontent-ahf-c68="" data-rel="4" class="btn btn-fix-2 btn-primary btn-block" (click)="logout()">Вихід</button>
-                </div>
-            </div>
-            <!-- <div class="tab-content w-100" id="v-pills-tabContent">
-                <router-outlet></router-outlet>
-            </div> -->
-        </div>
-      <div class="col-lg-10 col-xl-8 ">
-        <router-outlet></router-outlet>
+      <div class="row">
+          <div class="col-lg-3 col-xl-2 offset-xl-2">
+              <div class="nav flex-column nav-pills me-3 col-lg-3.col-xl-2.offset-xl-2" id="v-pills-tab" role="tablist"
+                      aria-orientation="vertical">
+                  <button class="nav-link" type="button" [routerLink]="[ 'personal' ]" routerLinkActive="active">Особисті
+                      дані</button>
+                  <button class="nav-link" type="button" [routerLink]="[ 'history' ]" routerLinkActive="active">Історія
+                      замовлень</button>
+                  <button style="border-bottom: 1px solid #dcdcdc" class="nav-link" type="button"
+                      [routerLink]="[ 'password' ]" routerLinkActive="active">Зміна паролю</button>
+                  <div _ngcontent-ahf-c68="" class="entrance">
+                      <button _ngcontent-ahf-c68="" data-rel="4" class="btn btn-fix-2 btn-primary btn-block" (click)="logout()">Вихід</button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-8 col-12">
+              <router-outlet></router-outlet>
+          </div>
       </div>
-    </div>
 </div>

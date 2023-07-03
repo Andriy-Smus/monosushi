@@ -1,1 +1,59 @@
-<p>admin-order works!</p>
+<ng-container *ngIf="!noOrders">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col" class="d-none d-md-block">№ замовлення</th>
+      <th scope="col" class="d-block d-md-none">№</th>
+      <th scope="col">Дата та час</th>
+      <th scope="col">Адреса</th>
+      <th scope="col">Сума</th>
+      <th scope="col">Коментар</th>
+      <th scope="col">Статус</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let order of ordersHistory">
+    <tr>
+      <td> {{ '№ ' + order.numberOrder }} </td>
+      <td> {{ order.dateTime }} </td>
+      <td style="color: #252525">   {{ order.orderForm.street ?
+        order.orderForm.street + ' ' + order.orderForm.house + '('+order.orderForm.entrance+')' + ', ' +
+        order.orderForm.flat :
+        order.orderForm.delivery_method + '(' + order.orderForm.pickup_address + ')' }} </td>
+      <td> {{ getTotalPrice(order.basket) }} </td>
+      <td> {{ order.orderForm.comment }} </td>
+      <td>
+        <div class="box-button-2">
+          <button type="button" class="completed">виконано</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td> {{ order.orderForm.name }} </td>
+      <ng-container *ngIf="order.orderForm.date || order.orderForm.at_time">
+        <td>{{ order.orderForm.date + ', ' + order.orderForm.time }}</td>
+      </ng-container>
+      <td *ngIf="!(order.orderForm.date || order.orderForm.at_time)"></td>
+      <td style="color: #252525"> {{ order.orderForm.phone + ' ' + order.orderForm.no_call }} </td>
+      <td></td>
+      <td> {{ order.orderForm.comment_kitchen }} </td>
+      <td> {{ order.orderForm.payment_method }} </td>
+    </tr>
+    <tr *ngFor="let product of order.basket">
+      <td></td>
+      <td> {{ product.name }} </td>
+      <td style="color: #252525"></td>
+      <td> {{ product.count }} </td>
+      <td></td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-container *ngIf="noOrders">
+  <div class="col-xl-8">
+    <div class="history-table-wrap">
+      <div class="empty-history">
+        Немає жодного замовлення!</div>
+    </div>
+  </div>
+</ng-container>

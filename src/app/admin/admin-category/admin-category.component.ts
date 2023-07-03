@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/category.interface';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { ImageService } from 'src/app/shared/services/image/image.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-category',
@@ -17,7 +18,7 @@ export class AdminCategoryComponent implements OnInit {
   public addStatus = false;
   public uploadPercent!: number;
   public isUploaded = false;
-  private currentCategoryId = 0;
+  private currentCategoryId!: number | string;
 
   public isRedName = false;
   public isRedPath = false;
@@ -25,7 +26,8 @@ export class AdminCategoryComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private categoryService: CategoryService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -42,8 +44,8 @@ export class AdminCategoryComponent implements OnInit {
   }
 
   loadCategories(): void {
-    this.categoryService.getAll().subscribe(data => {
-      this.adminCategories = data;
+    this.categoryService.getAllFirebase().subscribe(data => {
+      this.adminCategories = data as ICategoryResponse[];
     })
   }
 
@@ -68,12 +70,13 @@ export class AdminCategoryComponent implements OnInit {
 
   addCategory(): void {
     if(this.editStatus){
-      this.categoryService.update(this.categoryForm.value, this.currentCategoryId).subscribe(() => {
+      this.categoryService.updateFirebase(this.categoryForm.value, this.currentCategoryId as string).then(() => {
         this.loadCategories();
+        this.toastr.success('Категорія успішно змінена!');
       })
     } else {
-      this.categoryService.create(this.categoryForm.value).subscribe(() => {
-        this.loadCategories();
+      this.categoryService.createFirebase(this.categoryForm.value).then(() => {
+        this.toastr.success('Категорія успішно створена!');
       })
     }
     this.editStatus = false;
@@ -90,14 +93,15 @@ export class AdminCategoryComponent implements OnInit {
       imagePath: category.imagePath
     });
     this.editStatus = true;
-    this.currentCategoryId = category.id;
+    this.currentCategoryId = category.id as number;
     this.isUploaded = true;
     this.addStatus = true;
   }
 
   deleteCategory(category: ICategoryResponse): void {
-    this.categoryService.delete(category.id).subscribe(() => {
+    this.categoryService.deleteFirebase(category.id as string).then(() => {
       this.loadCategories();
+      this.toastr.success('Категорія успішно видалена!');
     })
   }
 

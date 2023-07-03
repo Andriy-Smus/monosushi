@@ -1,33 +1,21 @@
-<div class="container" style="margin: 140px auto 50px; width: max-content">
+<div *ngIf="headingProducts" class="container" style="margin: 140px auto 0; width: max-content">
     <div class="line"></div>
-    <h1>Продукти</h1>
+    <h1> {{ headingProducts }} </h1>
 </div>
-<div class="container my-5">
-    <div class="categories-menu">
-        <ul class="categories-list">
-            <li class="categories-list-item active"><a class="category_ajax" data-id="20,21,37,38,15,52">Всі</a></li>
-            <li class="categories-list-item"><a class="category_ajax" data-id="20">Філадельфія</a></li>
-            <li class="categories-list-item"><a class="category_ajax" data-id="21">Каліфорнія</a></li>
-            <li class="categories-list-item"><a class="category_ajax" data-id="37">Запечені</a></li>
-            <li class="categories-list-item"><a class="category_ajax" data-id="38">Фірмові</a></li>
-            <li class="categories-list-item"><a class="category_ajax" data-id="15">Макі</a></li>
-            <li class="categories-list-item"><a class="category_ajax" data-id="52">Преміум</a></li>
-        </ul>
-    </div>
-</div>
-<div class="container mb-5" style="max-width: 1750px">
+<div class="container mb-5" style="max-width: 1750px; margin-top: 30px">
     <div class="row">
         <div class="col-sm-6 col-lg-4 col-xl-3" *ngFor="let product of userProducts">
             <div class="product js-product border-1" data-price="267">
                 <div class="product_image-wrap">
-                    <a class="product_image" [routerLink]="[ '/product/'+product.category.path, product.id ]">
+                    <a class="product_image" [routerLink]="['/product', product.category.path, product.id]">
                         <img class="img img-default imgLoaded"
                             [src]="product.imagePath" alt="" oncontextmenu="return false">
                     </a>
                 </div>
                 <div class="product_title-wrap">
                     <div class="product_title title h5 m-auto">
-                        <a [routerLink]="[ '/product/'+product.category.path, product.id ]" itemprop="name"> {{ product.name }} </a>
+                        <a [routerLink]="['/product', product.category.path, product.id]" itemprop="name"> {{
+                          product.name }} </a>
                     </div>
                 </div>
                 <div class="product_desc">

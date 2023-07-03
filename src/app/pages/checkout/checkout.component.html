@@ -79,7 +79,7 @@
                             Оберіть кількість приборів </h5>
                     </div>
                     <div class="row form-group-row">
-                        <div class="col-sm-6">
+                        <div class="col-6">
                             <div class="SumoSelect" (click)="openCount()" [ngClass]="{'open': isCount}">
                                 <div class="select">
                                     <input type="text" formControlName="number_devices" [value]="selectedValue.textContent" style="display: none;">
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 count_things_study_wrapper">
+                        <div class="col-6 count_things_study_wrapper">
                             <div class="SumoSelect" (click)="openNumber()" [ngClass]="{'open': isNumber}">
                                 <div class="select">
                                     <span #selectedCount>Навчальні тримачі</span>
@@ -158,7 +158,7 @@
                     </div>
                     <div (click)="openSelfPickup()" class="checkbox-entry-wrap">
                         <label class="checkbox-entry">
-                            <input formControlName="delivery_method" id="driveDelivery" type="radio" name="delivery_method" class="toggle-block-control" data-min-amount="" data-discount-percent="" data-surprice="&quot;Запечені моно макі з лососем&quot; в подарунок" data-block="1" data-rel="1" data-checked="courier" data-method="local_pickup" value="Самовивіз">
+                            <input formControlName="delivery_method" type="radio" name="delivery_method" class="toggle-block-control" data-min-amount="" data-discount-percent="" data-surprice="&quot;Запечені моно макі з лососем&quot; в подарунок" data-block="1" data-rel="1" data-checked="courier" data-method="local_pickup" value="Самовивіз">
                             <span>
                                 Самовивіз ( <b>"Запечені моно макі з лососем" в подарунок</b> )
                             </span>
@@ -184,17 +184,17 @@
                             <div *ngIf="addTime" class="toggle-block local_visible" data-block="4" data-rel="1"
                                 data-min-time="00.30.00">
                                 <div class="row form-group-row">
-                                    <div class="col-sm-6">
+                                    <div class="col-6">
                                         <!-- <input formControlName="date" (input)="inputDate()" [ngClass]="{'invalid': isRedDate}" type="text" class="input calendar m-0 qaz" name="date" placeholder="Дата доставки" autocomplete="off" value=""> -->
                                         <mat-form-field>
                                             <input matInput [matDatepicker]="picker" formControlName="date" name="date" class="input calendar m-0" (click)="picker.open()" placeholder="Дата доставки">
-                                            <span class="mat-form-field-label-wrapper ng-tns-c84-0"><label class="mat-form-field-label ng-tns-c84-0 mat-empty mat-form-field-empty ng-star-inserted" ng-reflect-disabled="true" id="mat-form-field-label-1" ng-reflect-ng-switch="true" for="mat-input-0" aria-owns="mat-input-0">
+                                            <span class="mat-form-field-label-wrapper ng-tns-c84-0"><label class="mat-form-field-label ng-tns-c84-0 mat-empty mat-form-field-empty ng-star-inserted" ng-reflect-disabled="true" id="mat-form-field-label-1" ng-reflect-ng-switch="true" aria-owns="mat-input-0">
                                                 <mat-label _ngcontent-lyu-c122="" class="ng-tns-c84-0 ng-star-inserted">Дата доставки</mat-label></label>
                                             </span>
                                             <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-6">
                                         <div class="SumoSelect" (click)="openTime()" [ngClass]="{'open': isTime}">
                                             <div class="select" [ngClass]="{'invalidTime': isRedTime}">
                                                 <input type="text" formControlName="time" [value]="selectedTime.textContent" style="display: none;">
@@ -326,9 +326,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <input type="text" name="terminal_id" class="hidden" readonly="readonly"> -->
                 </div>
-                
+
                 <div class="order-wrap">
                     <div class="deliveryWarning">
                         <div *ngIf="isName" class="errorMsg empty-name">
@@ -347,50 +346,10 @@
                             <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
                             <p>Введіть вашу адресу та номер будинку</p>
                         </div>
-                        <!-- <div class="errorMsg empty-house">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>Невірна адреса</p>
-                        </div> -->
                         <div *ngIf="addSelfPickup && isRedAddress" class="errorMsg select_point">
                             <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
                             <p>Оберіть адресу самовивозу</p>
                         </div>
-                        <!-- <div class="errorMsg lowOrder">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>Вибачте, сума Вашого замовлення недостатня для даної зони</p>
-                        </div> -->
-                        <!-- <div class="errorMsg noDelivery">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>Вибачте, Ваша адреса поза межею доставки</p>
-                        </div> -->
-                        <!-- <div class="errorMsg noData">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>Вибачте Ваша адреса відсутня в базі. <br>Зв'яжіться з нашими операторами для уточнення адреси доставки</p>
-                        </div> -->
-                        <!-- <div class="errorMsg noPriceRoll">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>*Для того щоб отримати "Запечені моно макі з лососем" у подарунок, мінімальна сума замовлення повинна становити 300 грн </p>
-                        </div> -->
-                        <!-- <div class="errorMsg noPriceGreen">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>*Мінімальна сума замовлення в зелену зону доставки становить 300 грн </p>
-                        </div> -->
-                        <!-- <div class="errorMsg noPriceYellow">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>*Мінімальна сума замовлення в жовту зону доставки становить 400 грн </p>
-                        </div> -->
-                        <!-- <div class="errorMsg noPriceRed">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>*Мінімальна сума замовлення в червону зону доставки становить 500 грн </p>
-                        </div> -->
-                        <!-- <div class="errorMsg noPriceOut">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>*Мінімальна сума замовлення поза межі нашої зони доставки становить 700 грн </p>
-                        </div> -->
-                        <!-- <div class="errorMsg noZone">
-                            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/warning.svg" alt="warning" oncontextmenu="return false">
-                            <p>*На жаль, ваша адреса знаходиться поза межами нашої зони доставки </p>
-                        </div> -->
                     </div>
                     <div class="main-order-wrapp">
                         <div class="text-center w-100">

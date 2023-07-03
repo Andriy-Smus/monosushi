@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: max-content;">
     <div class="line"></div>
     <h1>Акціїї</h1>
 </div>
@@ -7,17 +7,17 @@
         <ng-container *ngIf="userDiscounts.length > 0">
             <div class="col-xl-5 col-md-6 col-12" [ngClass]="{'discount-one': userDiscounts.length < 2}" *ngFor="let discount of userDiscounts">
                 <div class="block-info">
-                    <a class="block-info-link" [routerLink]="[ '/discount', discount.id ]">
+                    <a class="block-info-link" [routerLink]="[ '/discount', discount?.id ]">
                         <div class="block-info-img">
                             <img [src]="discount.imagePath" alt="" oncontextmenu="return false" class="imgLoaded">
                         </div>
-                        <h5 class="title text-cut-2 text-center">Рол тижня</h5>
+                        <h5 class="title text-cut-2 text-center"> {{ discount.title }} </h5>
                     </a>
                     <div class="text-sm text-cut-3">
                     </div>
                     <hr>
                     <button type="button" class="btn btn-small btn-primary btn-block-center btn-fix-2"
-                        [routerLink]="[ '/discount', discount.id ]">дізнатись
+                        [routerLink]="[ '/discount', discount?.id ]">дізнатись
                         більше</button>
                 </div>
             </div>

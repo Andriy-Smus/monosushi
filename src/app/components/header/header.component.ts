@@ -5,7 +5,7 @@ import { IProductResponse } from 'src/app/shared/interfaces/product/product.inte
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
-import {CallUsComponent} from "../call-us/call-us.component";
+import { CallUsComponent } from '../call-us/call-us.component';
 
 
 @Component({
@@ -165,6 +165,19 @@ export class HeaderComponent implements OnInit {
       backdropClass: 'dialog-back',
       panelClass: 'auth-dialog'
     })
+  }
+
+  closeMenu() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+
+    // navbarToggler.classList.add('collapsed');
+    if (navbarToggler !== null) {
+      navbarToggler.classList.remove('show');
+    }
+    if (navbarCollapse !== null) {
+      navbarCollapse.classList.remove('show');
+    }
   }
 
 }

@@ -1,4 +1,5 @@
-<form class="form" id="user-edit-form">
+<form class="form" id="user-edit-form" [formGroup]="userForm"
+      (ngSubmit)="updateUser()">
   <div class="form-group">
     <div class="form-title title">
       <i class="number-title"><b>1</b></i>
@@ -6,17 +7,19 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <input type="text" class="input invalid" name="first_name" placeholder="*Ваше ім'я"
-               value="" required="">
+        <input type="text" class="input invalid" formControlName="firstName" name="firstName" placeholder="*Ваше ім'я"
+               [value]="user?.firstName">
       </div>
       <div class="col-md-6">
-        <input type="text" class="input invalid" name="last_name" placeholder="*Ваше прізвище" value="" required="">
+        <input type="text" class="input invalid" formControlName="lastName" name="lastName"
+               placeholder="*Ваше прізвище"
+               [value]="user?.lastName">
       </div>
     </div>
-    <input class="input inputmask invalid" name="phone" type="text" inputmode="numeric"
-           placeholder="*Ваш номер телефону" value="" required="" aria-invalid="true">
-    <input type="email" name="email" class="input invalid" placeholder="*Ваш емейл"
-           value="" required="">
+    <input class="input inputmask invalid" formControlName="phoneNumber" name="phoneNumber" type="text" inputmode="numeric"
+           placeholder="*Ваш номер телефону" [value]="user?.phoneNumber" aria-invalid="true">
+    <input type="email" formControlName="email" name="email" class="input invalid" placeholder="*Ваш емейл"
+           [value]="user?.email">
   </div>
   <div class="form-group">
     <div class="form-title title">
@@ -26,15 +29,69 @@
     <div class="cabinet_address-wrap">
       <table class="cabinet_address">
         <tbody>
+        <tr class="js-address-item" data-i="0" *ngFor="let address of addresses;  let i = index">
+          <td> {{ address.type_address }} </td>
+          <td>
+            <div class="cabinet_address-detail">
+              <span class="js-street"> {{ address.street }} </span>
+              <span class="js-house"> {{ address.number_building }} </span>
+              <span class="js-apartment" *ngIf="address.number_apartment"> {{ ', кв. ' + address?.number_apartment }}
+              </span>
+            </div>
+          </td>
+          <td>
+            <button class="link-icon js-edit-address open-popup" data-rel="address" type="button"
+                    (click)="editAddress(address, i)" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Редагувати
+            </button>
+          </td>
+          <td>
+            <div class="btn-close" (click)="deleteAddress(i)"></div>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="cabinet_address-buttons">
     <button class="btn btn-fix-2 btn-four open-popup js-clear-address-fields" data-rel="address"
-            type="button">Додати адресу</button>
+            type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Додати адресу</button>
     <button class="btn btn-fix-2 btn-primary" type="submit">Зберегти зміни</button>
   </div>
-  <!-- <a class="btn btn-primary logout" style="margin-top: 20px" href="https://monosushi.com.ua/wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Fmonosushi.com.ua&amp;_wpnonce=3ac1888b1a">Вихід</a> -->
 </form>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="popup-container size-1">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="popup-align text-center text">
+          <div class="popup-title h4 title">Нова адреса</div>
+          <form class="form" id="edit-address-form" data-btn-text="Редагувати" data-i="" [formGroup]="addressForm"
+                (ngSubmit)="addAddress()">
+            <input type="text" class="input" formControlName="type_address" name="type_address"
+                   placeholder="*Вкажіть тип адреси (наприклад дім, робота)" required>
+            <input type="text" class="input" formControlName="street" name="street" id="streetAutocomplete"
+                   placeholder="*Введіть вулицю доставки" required>
+            <div class="row">
+              <div class="col-6">
+                <input type="text" class="input" formControlName="number_building" name="number_building" id="houseNumber" placeholder="*№ будинку"
+                       required>
+              </div>
+              <div class="col-6">
+                <input type="text" class="input" formControlName="number_apartment" name="number_apartment" placeholder="№ квартири">
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-6">
+                <button [disabled]="addressForm.invalid" class="btn btn-primary btn-block save-address" type="submit" data-bs-dismiss="modal">
+                  Зберегти</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 

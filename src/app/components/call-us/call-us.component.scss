@@ -9,7 +9,6 @@
   background: #fff;
   border-radius: 10px;
   .popup-align {
-    // padding: 50px 60px 45px 60px;
     overflow: hidden;
     .popup-title {
       margin-bottom: 5px;
@@ -155,4 +154,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 body, .text {
   font-size: 18px;
   line-height: 1.5em;
+}
+
+@media (max-width: 992px) {
+  .h3, h3 {
+    font-size: 20px;
+  }
 }

@@ -74,7 +74,6 @@ footer {
                 }
                 .work-time {
                     @extend .s-delivery-address;
-
                 }
             }
             .social {
@@ -209,19 +208,19 @@ footer {
                         transition: 0.35s;
                     }
                 }
-                a.footer-dev-logo::before {
-                    background-image: url('https://monosushi.com.ua/wp-content/themes/monosushi/img/redstone-icon-black.svg');
-                    background-color: #ffffff;
-                    background-repeat: no-repeat;
-                    width: 75px;
-                    background-position: right center;
-                    background-size: 100%;
-                    content: '';
-                    right: 12px;
-                    top: 0px;
-                    position: absolute;
-                    height: 100%;
-                }
+                //a.footer-dev-logo::before {
+                //    background-image: url('https://monosushi.com.ua/wp-content/themes/monosushi/img/redstone-icon-black.svg');
+                //    background-color: #ffffff;
+                //    background-repeat: no-repeat;
+                //    width: 75px;
+                //    background-position: right center;
+                //    background-size: 100%;
+                //    content: '';
+                //    right: 12px;
+                //    top: 0px;
+                //    position: absolute;
+                //    height: 100%;
+                //}
             }
         }
     }
@@ -289,6 +288,11 @@ p {
   }
 }
 
+@media (max-width: 992px) {
+  footer .footer-inner {
+    padding-bottom: 60px;
+  }
+}
 @media (max-width: 767px) {
   footer .footer-inner .footer-top {
     .menu-list {
@@ -403,5 +407,4 @@ p {
       }
     }
   }
-
 }

@@ -1,6 +1,5 @@
 @import "../../shared/styles/variables";
 
-
 .container-fluid {
     margin-top: 160px;
     margin-bottom: 120px;
@@ -70,4 +69,23 @@
 :active,
 :visited {
   outline: none;
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    margin-top: 140px;
+    margin-bottom: 80px;
+  }
+  .entrance {
+    .btn-fix-2 {
+      max-width: max-content;
+    }
+    .btn {
+      font-size: 16px;
+      line-height: 14px;
+      padding: 16px 28px;
+      border-radius: 5px;
+      border-width: 1px;
+    }
+  }
 }

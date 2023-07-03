@@ -1,8 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IProductRequest, IProductResponse } from '../../interfaces/product/product.interface';
+import { IProductRequest } from '../../interfaces/product/product.interface';
+import {
+  addDoc,
+  collectionData,
+  CollectionReference,
+  deleteDoc,
+  doc,
+  docData,
+  Firestore,
+  updateDoc
+} from '@angular/fire/firestore';
+import { collection, DocumentData, query, where } from '@firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -11,30 +21,44 @@ export class ProductService {
 
   private url = environment.BACKEND_URL;
   private api = { products: `${this.url}/products` };
+  private productCollection!: CollectionReference<DocumentData>;
 
-  constructor(private http: HttpClient) { }
-  
-  getAll(): Observable<IProductResponse[]> {
-    return this.http.get<IProductResponse[]>(this.api.products);
+  constructor(
+    private http: HttpClient,
+    private afs: Firestore
+  ) {
+    this.productCollection = collection(this.afs, 'products')
   }
 
-  getAllByCategory(name: string): Observable<IProductResponse[]> {
-    return this.http.get<IProductResponse[]>(`${this.api.products}?category.path=${name}`);
+  getAllFirebase() {
+    return collectionData(this.productCollection, { idField: 'id' })
+  }
+  getSomeFirebase() {
+    const queryOptions = query(this.productCollection, where('category.name', 'in', ['Сети', 'Роли']));
+    return collectionData(queryOptions, { idField: 'id' });
   }
 
-  getOne(id: number): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(`${this.api.products}/${id}`);
+  getAllByCategory(name: string = '') {
+    const queryOptions = query(this.productCollection, where('category.path', '==', name));
+    return collectionData(queryOptions, { idField: 'id' });
   }
 
-  create(product: IProductRequest): Observable<IProductResponse> {
-    return this.http.post<IProductResponse>(this.api.products, product);
+  getOneFirebase(id: string) {
+    const discountDocumentReference = doc(this.afs, `products/${id}`);
+    return docData(discountDocumentReference, { idField: 'id' });
   }
 
-  update(product: IProductRequest, id: number): Observable<IProductResponse> {
-    return this.http.patch<IProductResponse>(`${this.api.products}/${id}`, product);
+  createFirebase(product: IProductRequest) {
+    return addDoc(this.productCollection, product);
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.api.products}/${id}`);
+  updateFirebase(product: IProductRequest, id: string) {
+    const  discountDocumentReference = doc(this.afs, `products/${id}`)
+    return updateDoc(discountDocumentReference,{...product});
+  }
+
+  deleteFirebase(id: string) {
+    const  discountDocumentReference = doc(this.afs, `products/${id}`)
+    return deleteDoc(discountDocumentReference);
   }
 }

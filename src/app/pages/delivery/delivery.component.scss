@@ -50,7 +50,7 @@
         }
         .text-center {
             text-align: center;
-            
+
         }
         .text-sm {
             font-size: 14px;
@@ -113,7 +113,6 @@
     }
     .pai-info {
         justify-content: center;
-        // position: relative;
         .pay-info-item {
             position: relative;
             display: -webkit-box;
@@ -147,7 +146,7 @@
                     margin: 0;
                 }
             }
-        }       
+        }
     }
     .row.pai-info div[class^="col"]+div[class^="col"]::before {
         content: "";
@@ -199,6 +198,12 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
         padding-left: 15px;
         padding-right: 15px;
     }
+}
+
+@media (max-width: 576px) {
+  .box h1 {
+    font-size: 1.8rem;
+  }
 }
 
 

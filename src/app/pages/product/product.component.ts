@@ -14,6 +14,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   public userProducts: Array<IProductResponse> = [];
   private eventSubscription!: Subscription;
+  public headingProducts!: string;
 
   constructor(
     private productService: ProductService,
@@ -32,9 +33,16 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   getProducts(): void {
     const categoryName = this.activatedRoute.snapshot.paramMap.get('category') as string;
-    this.productService.getAllByCategory(categoryName).subscribe(data => {
-      this.userProducts = data;
-    })
+    if (categoryName) {
+      this.productService.getAllByCategory(categoryName).subscribe(data => {
+        this.userProducts = data as IProductResponse[];
+        this.headingProducts = this.userProducts[0].category.name;
+      });
+    } else {
+      this.productService.getSomeFirebase().subscribe(data => {
+        this.userProducts = data as IProductResponse[];
+      });
+    }
   }
 
   ngOnDestroy(): void {

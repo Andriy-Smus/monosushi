@@ -4,10 +4,11 @@
       <div class="popup-align text-center text">
         <div class="popup-title title h3"><b>МИ ЗАТЕЛЕФОНУЄМО</b></div>
         <div class="popup-description">Залиште номер телефону і наші менеджери зв’яжуться з вами</div>
-        <form class="form popup-form" id="login-form">
-          <input type="text" class="input" name="name" placeholder="Ваше ім'я" required="">
-          <input type="tel" class="input" name="phoneNumber" placeholder="Ваш номер телефону" required="">
-          <button class="btn btn-primary btn-block" type="submit">Надіслати</button>
+        <form class="form popup-form" id="login-form" [formGroup]="phoneForm" (ngSubmit)="sentContat()">
+          <input type="text" class="input" formControlName="name" name="name" placeholder="Ваше ім'я" required="">
+          <input type="tel" class="input" formControlName="phoneNumber" name="phoneNumber" placeholder="Ваш номер телефону"
+                 required="">
+          <button class="btn btn-primary btn-block" [disabled]="phoneForm.invalid" type="submit">Надіслати</button>
           <div class="error-message"></div>
         </form>
       </div>

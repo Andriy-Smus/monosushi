@@ -1,5 +1,8 @@
 @import '../../shared/styles/variables';
 
+.col-12 {
+  padding: 0 1.5rem;
+}
 .btn-block {
     display: block;
     width: 100%;
@@ -65,14 +68,13 @@
     }
     textarea {
         @extend .input;
-        height: 180px; 
-        resize: none; 
+        height: 180px;
+        resize: none;
     }
     input[type="file"] {
         line-height: inherit;
         padding: 16px 30px;
     }
-
     .cabinet_address-buttons .btn {
         background-color: $primary;
     }
@@ -80,7 +82,6 @@
         background-color: #fff;
     }
     .red {
-        // color: red;
         border-color: red;
     }
     .red::placeholder {
@@ -100,8 +101,6 @@
         }
     }
 }
-
-
 
 .table>:not(:first-child) {
     border-top: 3px solid $primary;
@@ -153,4 +152,73 @@ th, td {
         right: auto;
         left: 0;
     }
+}
+
+@media (max-width: 1200px) {
+  table {
+    font-size: 14px;
+  }
+}
+@media (max-width: 997px) {
+  table {
+    font-size: 12px;
+    img {
+      max-width: 50px;
+      height: max-content;
+    }
+  }
+  .table>:not(caption)>*>* {
+    padding: 0.3rem 0.2rem;
+  }
+  .box-button-2 .edit, .box-button-2 .delete {
+    line-height: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .col-12 {
+    padding: 0 1rem;
+  }
+  .form {
+    margin: 20px 0 40px;
+    .box-button-1 {
+      display: block;
+      .input+.input {
+        margin-left: 0;
+      }
+    }
+    .input {
+      font-size: 12px;
+      height: 36px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      line-height: 36px;
+      padding: 0 10px;
+    }
+    textarea {
+      height: 120px;
+      line-height: 14px;
+      padding: 10px 10px;
+    }
+    input[type="file"] {
+      height: 44px;
+      line-height: inherit;
+      padding: 5px 10px;
+    }
+  }
+  .btn-fix-2 {
+    max-width: max-content;
+  }
+  .btn {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 8px 11px;
+    border-radius: 5px;
+    border-width: 1px;
+  }
+  table {
+    font-size: 10px;
+  }
+  tbody {
+    line-height: 10px;
+  }
 }

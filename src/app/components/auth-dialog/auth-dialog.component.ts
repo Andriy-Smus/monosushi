@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -96,7 +96,6 @@ export class AuthDialogComponent implements OnInit {
     this.registerData = this.registerForm.value;
     this.emailSignUp(email, password).then(() => {
       this.toastr.success('User successfully created');
-      // this.isLogin = !this.isLogin;
       this.registerForm.reset();
     }).catch(e => {
       this.toastr.error(e.message);
@@ -110,7 +109,7 @@ export class AuthDialogComponent implements OnInit {
       firstName: this.registerData.firstName,
       lastName: this.registerData.lastName,
       phoneNumber: this.registerData.phoneNumber,
-      address: '',
+      address: [],
       orders: [],
       role: 'USER'
     };

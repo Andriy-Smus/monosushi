@@ -9,9 +9,7 @@ const routes: Routes = [
     path: '', component: DiscountComponent
   },
   {
-    path: ':id', component: DiscountInfoComponent, resolve: {
-      discountInfo: DiscountInfoResolver
-    }
+    path: ':id', component: DiscountInfoComponent
   }
 ];
 

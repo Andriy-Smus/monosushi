@@ -54,12 +54,6 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
 
   async login(email: string, password: string): Promise<void> {
     const credential = await signInWithEmailAndPassword(this.auth, email, password);
-    // this.loginSubscription = docData(doc(this.afs, 'users', credential.user.uid)).subscribe(user => {
-    //   console.log('user', user)
-
-    // }, (e) => {
-    //     console.log('error', e);
-    // })
     this.loginSubscription = docData(doc(this.afs, 'users', credential.user.uid)).subscribe(user => {
       const currentUser = { ...user, uid: credential.user.uid };
       localStorage.setItem('currentUser', JSON.stringify(currentUser));

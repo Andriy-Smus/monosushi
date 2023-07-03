@@ -151,7 +151,7 @@ h3, .h3 {
                             font-size: 16px;
                             line-height: 16px;
                             margin-right: auto;
-                            margin-left: auto;                         
+                            margin-left: auto;
                             -ms-flex-negative: 0;
                             flex-shrink: 0;
                             width: 110px;
@@ -468,7 +468,7 @@ h3, .h3 {
                     }
                 }
             }
-            
+
             .SumoSelect.open .optWrapper {
                 transform: scaleY(1);
                 top: 100%;
@@ -656,16 +656,15 @@ h3, .h3 {
         .input {
             width: -webkit-fill-available;
         }
-        
+
     }
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {
     top: 2.4em;
     left: 1em;
-}   
+}
 .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-    // transform: translateY(-1em) scale(0.75) perspective(100px);
     display: none;
 }
 .invalidTime {
@@ -713,6 +712,57 @@ a {
 }
 a {
     cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .box h1 {
+    font-size: 26px;
+  }
+  .container .form-group {
+    margin-bottom: 30px;
+    .checkout-products .prod_horiz {
+      .prod_horiz-img {
+        width: 102px;
+        height: 82px;
+      }
+      .prod_horiz-desc {
+        padding: 0 10px;
+        flex-wrap: wrap;
+        .prod_horiz-controls {
+          width: 100%;
+          margin-top: 10px;
+          .thumb-input-number {
+            width: max-content;
+            margin-left: 0;
+            button {
+              width: 25px;
+              height: 30px;
+              border: none;
+              padding-bottom: 0;
+              margin: 2px;
+              font-size: 24px;
+              line-height: 24px;
+            }
+            input {
+              width: 20px;
+              height: 34px;
+              font-size: 13px;
+              line-height: 37px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .form-group-row {
+    display: flex;
+  }
+  .container .form-group .form-group-row .SumoSelect .select span {
+    font-size: 16px;
+  }
+  .container .form-group .form-group-row .SumoSelect .select {
+    padding: 3px 40px 3px 20px;
+  }
 }
 
 

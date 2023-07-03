@@ -3,6 +3,7 @@
 .container-fluid {
     margin-top: 160px;
     margin-bottom: 120px;
+    padding: 0 1.5rem;
 }
 .nav-link {
     outline: none;
@@ -64,12 +65,31 @@
     }
 }
 
-
-
-
-:focus,
-:hover,
-:active,
-:visited {
+:focus, :hover, :active, :visited {
     outline: none;
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    margin-top: 120px;
+    margin-bottom: 20px;
+    padding: 0.5rem;
+  }
+  .nav-link {
+    padding: 0;
+    font-size: 14px;
+  }
+  .entrance {
+    margin: 20px auto 0;
+    .btn-fix-2 {
+      max-width: max-content;
+    }
+    .btn {
+      font-size: 14px;
+      line-height: 14px;
+      padding: 8px 11px;
+      border-radius: 5px;
+      border-width: 1px;
+    }
+  }
 }
